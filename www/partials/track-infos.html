@@ -64,7 +64,7 @@
             <div class="laps-table-speed">Tempo&nbsp;Km/H</div>
         </div>
 
-        <div ng-repeat="stepPace in gpxPaces">
+        <div class="laps" ng-repeat="stepPace in gpxPaces" ng-class="{ 'laps-step' : !($index % 5) }">
 
             <div class="laps-table-km">{{ stepPace.km }}</div>
             <div class="laps-table-pace">{{ stepPace.pace | date:"mm.ss" }}</div>

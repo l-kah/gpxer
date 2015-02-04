@@ -2,13 +2,10 @@
 
 app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $ionicHistory, $state, $location, DataSource, $timeout, track) {
 
-
+    // *** show drawer
     $scope.showPaperDrawer = function() {
         $scope.$parent.toggleDrawer();
     }
-
-
-
 
     // ** load tracklist
     $scope.loadTracks = function() {
@@ -24,10 +21,6 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
         $state.go('track.' + tabId);
 
     };
-
-
-    // ** END load track in trackview
-
 
 
     // *** load XML and transform gpx
@@ -606,21 +599,8 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
     // *** END map full ini
     // *********************
 
-    // *** load XML and call transform gpx
-    // var SOURCE_FILE = "gpx-data/runtastic_20140309_1641_Wandern.gpx";
-
-    if (!track)
-        $scope.curTrackfile = "runtastic_20150103_1707_Laufen.gpx";
-    else
-        $scope.curTrackfile = track;
-
-
-    // *** load XML and call transform gpx
-    // var SOURCE_FILE = "gpx-data/runtastic_20140309_1641_Wandern.gpx";
-
 
     $timeout(saveMapData, 1000);
-
 
 
     function saveMapData() {
@@ -638,6 +618,17 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
     }
 
 
+    // *** load XML and call transform gpx
+    // var SOURCE_FILE = "gpx-data/runtastic_20140309_1641_Wandern.gpx";
+
+    if (!track)
+        $scope.curTrackfile = "runtastic_20150103_1707_Laufen.gpx";
+    else
+        $scope.curTrackfile = track;
+
+    // *** load XML and call transform gpx
+    // var SOURCE_FILE = "gpx-data/runtastic_20140309_1641_Wandern.gpx";
+
     var SOURCE_FILE = "gpx-data/" + $scope.curTrackfile;
     DataSource.get(SOURCE_FILE, xmlTransform);
 
@@ -647,4 +638,4 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
 
 });
 
-// *** ENDE TRACKDETAILS Controller
+// *** ENDE TRACK Controller

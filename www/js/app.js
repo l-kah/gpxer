@@ -24,9 +24,8 @@ app.run(function($ionicPlatform, $rootScope, $location) {
 
 app.config(function($ionicConfigProvider) {
     // $ionicConfigProvider.views.maxCache(5);
-
     // note that you can also chain configs
-    $ionicConfigProvider.backButton.text('').icon('md md-arrow-back titleTracks').previousTitleText(false);
+
 });
 
 
@@ -41,19 +40,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('tracks/internal');
 
-    /*
-        $stateProvider.state('tracks', {
-            abstract: true,
-            url: '/tracks',
-            views: {
-                tracks: {
-                    template: '<ion-nav-view></ion-nav-view>'
-                }
-            }
 
-        })
-    */
-    
     $stateProvider.state('tracks', {
         url: '/tracks/:filesource',
         templateUrl: 'partials/tracks.html',
@@ -90,23 +77,8 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         url: '/infos',
         templateUrl: 'partials/track-infos.html',
 
-
     })
 
-
-    /*
-        $stateProvider.state('tracks.trackview', {
-            url: '/:track',
-            templateUrl: 'partials/track.html',
-            controller: 'TrackdetailsController',
-            resolve: {
-                track: function($stateParams) {
-                    return $stateParams.track
-                }
-            }
-        })
-
-    */
 
 });
 

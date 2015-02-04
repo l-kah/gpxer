@@ -2,16 +2,8 @@
 
 app.controller('rootController', function($scope, $state, $location, $ionicPopover) {
 
-    /*
-        $scope.showPaperDrawer = function() {
-            $rootScope.paperDrawer = !$rootScope.paperDrawer;
-
-        }
-    */
     // ** load track in trackview
     $scope.loadTrackList = function(id) {
-
-
         $scope.closeDrawer();
         $state.go('tracks', {
             'filesource': id

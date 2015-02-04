@@ -2,13 +2,7 @@
 
 app.controller('TrackMapController', function($scope, $ionicLoading, $ionicHistory, $state, $location, DataSource, $timeout, track) {
 
-
-
-
-
-        $scope.mapLoaded = false;
-
-
+    $scope.mapLoaded = false;
 
     $scope.mapBounds = function() {
 
@@ -17,10 +11,9 @@ app.controller('TrackMapController', function($scope, $ionicLoading, $ionicHisto
         // $scope.map.bounds = mapBounds;
         $scope.map.zoom = 12;
 
-        // $scope.marker.options.visible = false;
+       // $scope.marker.options.visible = false;
 
     }
-
 
     // ***  END init google maps
 
@@ -99,12 +92,6 @@ app.controller('TrackMapController', function($scope, $ionicLoading, $ionicHisto
             }, options);
 
     };
-
-
-
-
-
-
 
 
 

@@ -24,6 +24,7 @@ overflow: auto;
 .track-chart
 {
     height: 300px;
+    overflow: hidden;
 }
 
 .map-fabs {
@@ -98,7 +99,7 @@ overflow: auto;
     max-width: 15%;
     text-align: center;
 
-    padding: 0 0 12px 16px;
+    padding: 6px 0 6px 16px;
     margin: 0 0 0 0;
 
 }
@@ -114,17 +115,19 @@ overflow: auto;
 .laps-table-pace
 {
 @extend .laps-table-col;
-
     width: 100%;
     max-width: 40%;
-
 }
 
 
 .laps-table-speed
 {
 @extend .laps-table-pace;
-
-
 }
+
+.laps-step{
+  border-top: 1px solid  $paper-theme-divider;
+  padding-top: 1px;
+  
+  }
 
