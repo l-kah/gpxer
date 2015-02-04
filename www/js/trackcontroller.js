@@ -209,10 +209,14 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
             }
         }
 
+
+        perfTimer = new Date().getTime() - perfTimer;
+        console.log("time for gpx-data init: " + (perfTimer / 1000) + " seconds.");
+
+
         // *********************
         // *** END start loop
         // *********************
-
 
 
 
@@ -589,9 +593,6 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
         // ********************
 
         $scope.mapLoaded = true;
-
-        perfTimer = new Date().getTime() - perfTimer;
-        console.log("time for gpx-data init: " + (perfTimer / 1000) + " seconds.");
 
     };
 

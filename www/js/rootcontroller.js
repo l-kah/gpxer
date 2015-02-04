@@ -10,6 +10,18 @@ app.controller('rootController', function($scope, $state, $location, $ionicPopov
         });
     }
 
+    $scope.loadAbout= function() {
+        $scope.closeDrawer();
+        $state.go('about');
+    }
+
+      $scope.loadSettings = function() {
+        $scope.closeDrawer();
+        $state.go('settings');
+    }
+
+
+
     $scope.toggleDrawer = function() {
         $scope.paperDrawer = !$scope.paperDrawer;
     }

@@ -12,6 +12,9 @@ color: $paper-theme-text;
     padding: 0 !important;
 }
 
+.paper-theme { background-color: $paper-theme; }
+.paper-theme-col { color: $paper-theme !important; }
+
 .paper-icon {
     background: none;
     display: inline-block;

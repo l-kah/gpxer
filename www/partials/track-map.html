@@ -15,7 +15,7 @@
     </div>
 
     <div class="map-fabs">
-        <button ng-click="centerOnMe()" class="paper-fab md md-gps-fixed"><span class="paper-fab-content"></span>
+        <button ng-click="toggleGPS()" class="paper-fab md md-gps-fixed" ng-class="{'paper-theme-col':gpsLock}"><span class="paper-fab-content"></span>
         </button>
         <button ng-click="mapBounds()" class="paper-fab md md-center-focus-weak"><span class="paper-fab-content"></span>
         </button>

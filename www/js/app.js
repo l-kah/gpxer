@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('GPXerApp', ['ionic', 'ngTouch', 'uiGmapgoogle-maps', 'GPXerApp.service', 'googlechart']);
 
-app.run(function($ionicPlatform, $rootScope, $location) {
+app.run(function($ionicPlatform, $rootScope, $location, $state) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -19,6 +19,9 @@ app.run(function($ionicPlatform, $rootScope, $location) {
         }
     });
 
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState) {
+        $state.previous = fromState;
+    });
 
 })
 
@@ -79,6 +82,20 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     })
 
+
+    $stateProvider.state('about', {
+        url: '/about',
+        templateUrl: 'partials/about.html',
+        controller: 'aboutController',
+
+    })
+
+    $stateProvider.state('settings', {
+        url: '/settings',
+        templateUrl: 'partials/settings.html',
+        controller: 'aboutController',
+
+    })
 
 });
 
