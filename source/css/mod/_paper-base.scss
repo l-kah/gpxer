@@ -1,0 +1,57 @@
+
+
+
+@mixin paper-typo-display1() {
+    font-size: $paper-font-size-display1;
+    font-weight: $paper-weight-regular;
+}
+@mixin paper-typo-headline() {
+    font-size: $paper-font-size-headline;
+    font-weight: $paper-weight-regular;
+}
+@mixin paper-typo-title() {
+    font-size: $paper-font-size-title;
+    font-weight: $paper-weight-medium;
+}
+@mixin paper-typo-subhead() {
+    font-size: $paper-font-size-subhead;
+    font-weight: $paper-weight-regular;
+}
+@mixin paper-typo-body() {
+    font-size: $paper-font-size-body;
+    font-weight: $paper-weight-regular;
+    color: $paper-theme-text;
+}
+@mixin paper-typo-body2() {
+    font-size: $paper-font-size-body;
+    font-weight: $paper-weight-medium;
+    color: $paper-theme-text;
+}
+@mixin paper-typo-caption() {
+    font-size: $paper-font-size-caption;
+    font-weight: $paper-weight-regular;
+    color: $paper-theme-text-2;
+}
+@mixin paper-typo-button() {
+    font-size: $paper-font-size-body;
+    font-weight: $paper-weight-regular;
+    text-transform: uppercase;
+}
+
+@mixin paper-typo-tab() {
+    font-size: $paper-font-size-tabs;
+    font-weight: $paper-weight-medium;
+    text-transform: uppercase;
+ 
+}
+
+
+/* shadows */
+$paper-depth0: 0px 0px 2px rgba(0, 0, 0, 0.1);
+$paper-depth1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.12);
+$paper-depth2: 1px 2px 6px rgba(0,0,0,0.16), -1px 2px 6px rgba(0,0,0,0.16);
+$paper-depth3: 0px 4px 11px rgba(0, 0, 0, 0.2);
+$paper-depth4: 2px 8px 12px rgba(0,0,0,0.15), -2px 8px 12px rgba(0,0,0,0.1);
+$paper-depth5: 0px 15px 24px 6px rgba(0, 0, 0, 0.2);
+
+

@@ -1,0 +1,146 @@
+// *** paper navigation
+.paper-header {
+    z-index: 1;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 56px;
+    box-shadow: $paper-depth2;
+
+    background-color: $paper-theme;
+}
+.paper-header-lg {
+    @extend .paper-header;
+    height: 112px;
+}
+.paper-toolbar {
+    height: 56px;
+    margin: 0;
+    padding: 4px 8px 4px 8px;
+}
+.paper-toolbar-title {
+    display: inline-block;
+    width: auto;
+    max-width: 80vw;
+    height: 48px;
+    margin: 0 0 0 0px;
+    color: #fff;
+    @include paper-typo-title();
+    line-height: 25px;
+    padding: 12px 12px 12px 12px;
+}
+.paper-toolbar-subtitle {
+    display: block;
+    @include paper-typo-caption();
+    color: rgba(255, 255, 255, .5);
+    margin: -6px 0 0 0;
+    width: 100%;
+    height: 1.5em;
+    overflow: hidden;
+}
+.paper-tabs {
+    margin: 0 0 0 0;
+    padding: 26px 0 0 60px;
+    height: 56px;
+    width: 100%;
+}
+.paper-tab {
+    display: inline-block;
+    margin: 0;
+    padding: 0 $paper-font-size-body 12px $paper-font-size-body;
+    @include paper-typo-tab();
+    color: rgba(255, 255, 255, .5);
+    font-family: $paper-font;
+    cursor: pointer;
+}
+.paper-tab:hover, .paper-tab-active {
+    color: $paper-theme-icons;
+}
+.paper-tab-active {
+    color: $paper-theme-icons;
+    border-bottom: 2px solid $paper-theme-icons;
+}
+// ********************** 
+// *** paper drawer
+// ********************** 
+.paper-drawer {
+    z-index: 9999;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: $paper-theme-icons;
+    box-shadow: $paper-depth3;
+}
+.paper-drawer-title {
+    overflow: auto;
+    height: 168px;
+    margin: 0 0 12px 0;
+    padding: 4px 8px 3px 8px;
+    background-color: $paper-theme;
+    background-image: url(../images/navdrawer-bg.png);
+    background-repeat: no-repeat;
+    background-position: -64px -64px;
+    @include paper-typo-title;
+}
+.paper-drawer-items {
+    margin: 0;
+    padding: 0;
+    clear: both;
+}
+.paper-drawer-title .paper-drawer-item-text {
+    @include paper-typo-title;
+    color: $paper-theme-icons;
+}
+.paper-drawer-title:hover {
+    background-color: none;
+}
+.paper-drawer-item {
+    margin: 0;
+    padding: 0 12px 0 6px;
+    clear: both;
+    overflow: auto;
+    cursor: pointer;
+    &:hover {
+        background-color: $paper-theme-hover;
+    }
+}
+
+.paper-drawer-item-divider
+{
+
+    width: 100%;
+    @extend .paper-drawer-item;
+    border-top: 1px solid $paper-theme-divider;
+}
+.paper-drawer-item-icon {
+    height: auto;
+    float: left;
+    color: $paper-theme-text-2;
+}
+.paper-drawer-item-icon.paper-icon:hover
+{
+    background: none !important;  
+
+}
+
+.paper-drawer-item-text {
+    float: left;
+    margin: 0;
+    padding: 12px 12px 12px 6px;
+    @include paper-typo-body2;
+    font-size: $paper-font-size-tabs;
+    color: $paper-theme-text;
+}
+.animate-enter {
+    transform: translate(-295px, 0);
+    transition: 0.2s cubic-bezier(.17, .67, .79, .96) all;
+    opacity: 0.01;
+}
+.animate-enter.animate-enter-active {
+    transform: translate(0, 0);
+    opacity: 1;
+}

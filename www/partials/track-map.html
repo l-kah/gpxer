@@ -1,0 +1,61 @@
+<div class="paper-content paper-fold-3 paper-noscroll">
+
+    <div id="map_canvas" class="map-container">
+
+        <ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options" control="map.control" bounds="map.bounds">
+            <ui-gmap-polyline path="map.path" stroke="map.stroke" fit="map.fit" geodesic="true" static="true"></ui-gmap-polyline>
+
+            <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                <ui-gmap-markers models="markersDiststeps" coords="'self'" icon="'icon'" options="'options'" isLabel='true'></ui-gmap-markers>
+
+            </ui-gmap-marker>
+
+        </ui-gmap-google-map>
+
+    </div>
+
+    <div class="map-fabs">
+        <button ng-click="centerOnMe()" class="paper-fab md md-gps-fixed"><span class="paper-fab-content"></span>
+        </button>
+        <button ng-click="mapBounds()" class="paper-fab md md-center-focus-weak"><span class="paper-fab-content"></span>
+        </button>
+    </div>
+
+
+    <div class="map-debug">{{ mapDebug }}
+        <br> {{ map.center }}
+        <br> {{ longCenter }}
+    </div>
+
+</div>
+
+
+<div class="bar map-compactinfos bar-footer bar-light ">
+
+    <div class="row">
+
+        <div class="col map-compactinfos-item miniinfo-size1">
+            <i class="md md-swap-calls"></i><span>{{ gpxDistance }}&nbsp;Km</span>
+        </div>
+
+        <div class="col map-compactinfos-item">
+            <i class="md md-timer"></i><span>{{ gpxDuration | date:"HH:mm:ss" }}</span>
+        </div>
+
+        <div class="col map-compactinfos-item miniinfo-size2">
+            <i class="md md-directions-walk"></i><span>{{ gpxPace | date:"mm.ss" }}&nbsp;min/Km<span class="rwd3"> / {{ gpxSpeed }}&nbsp;Km/h</span>
+            </span>
+        </div>
+
+
+        <div class="col map-compactinfos-item miniinfo-size2 rwd1">
+            <i class="md md-landscape"></i><span>{{ gpxUp }}&nbsp;m / {{ gpxDown }}&nbsp;m</span>
+        </div>
+
+        <div class="col map-compactinfos-item  miniinfo-size2 rwd2">
+            <i class="md md-import-export"></i><span>{{ gpxMaxHeight }}&nbsp;m / {{  gpxMinHeight  }}&nbsp;m</span>
+        </div>
+
+    </div>
+
+</div>

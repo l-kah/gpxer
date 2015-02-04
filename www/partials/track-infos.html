@@ -1,0 +1,152 @@
+<div class="paper-content  paper-fold-2 paper-base">
+
+
+    <div class="paper-card-list">
+        <div class="paper-card-list-title">{{ curTrackfile }}</div>
+
+        <div class="paper-card-list-item">
+            <i class="md-lg md-swap-calls padding paper-card-list-icon"></i>
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Distanz</p>
+                <p class="paper-card-list-text">{{ gpxDistance }} Km</p>
+            </div>
+        </div>
+
+        <div class="paper-card-list-item">
+            <i class="md-lg md-timer padding paper-card-list-icon"></i>
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Dauer</p>
+                <p class="paper-card-list-text">{{ gpxDuration | date:"HH:mm:ss" }}</p>
+            </div>
+        </div>
+
+        <div class="paper-card-list-item">
+            <i class="md-lg md-directions-walk padding  paper-card-list-icon"></i>
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Tempo</p>
+                <p class="paper-card-list-text">{{ gpxPace | date: "mm.ss" }} min/Km</p>
+            </div>
+        </div>
+
+        <div class="paper-card-list-item">
+            <i class="md-lg md-landscape padding paper-card-list-icon"></i>
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Höhenmeter hoch</p>
+                <p class="paper-card-list-text">{{ gpxUp }} m</p>
+            </div>
+        </div>
+
+        <div class="paper-card-list-item">
+            <i class="md-lg md-landscape padding paper-card-list-icon"></i>
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Höhenmeter runter</p>
+                <p class="paper-card-list-text">{{ gpxDown }} m</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="paper-card-list track-chart">
+        <div class="paper-card-list-title">Höhenprofil</div>
+
+        <div google-chart chart="chartObject" style="{{cssStyle}}"></div>
+
+    </div>
+
+
+    <div class="paper-card-list track-lapinfos">
+        <div class="paper-card-list-title">Zwischenzeiten</div>
+
+        <div class="laps-table">
+            <div class="laps-table-km">Km</div>
+            <div class="laps-table-pace">Pace&nbsp;min/Km</div>
+            <div class="laps-table-speed">Tempo&nbsp;Km/H</div>
+        </div>
+
+        <div ng-repeat="stepPace in gpxPaces">
+
+            <div class="laps-table-km">{{ stepPace.km }}</div>
+            <div class="laps-table-pace">{{ stepPace.pace | date:"mm.ss" }}</div>
+            <div class="laps-table-speed">{{ stepPace.speed }}</div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="paper-card-list">
+        <div class="paper-card-list-title">Weitere Statistik</div>
+
+        <div class="paper-card-list-item">
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Punkte</p>
+                <p class="paper-card-list-text">{{ gpxPoints }}</p>
+            </div>
+        </div>
+
+        <div class="paper-card-list-item">
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Start</p>
+                <p class="paper-card-list-text">{{ gpxStart | date:"dd.MM.yyyy 'um' HH:mm" }}</p>
+            </div>
+        </div>
+        <div class="paper-card-list-item">
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Ende</p>
+                <p class="paper-card-list-text">{{ gpxEnde | date:"dd.MM.yyyy 'um' HH:mm" }}</p>
+            </div>
+        </div>
+
+        <div class="paper-card-list-item">
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Geschwindigkeit</p>
+                <p class="paper-card-list-text">{{ gpxSpeed }} Km/H</p>
+            </div>
+        </div>
+        <div class="paper-card-list-item">
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Tiefster Punkt </p>
+                <p class="paper-card-list-text">{{ gpxMinHeight }} m</p>
+            </div>
+        </div>
+
+        <div class="paper-card-list-item">
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Höchster Punkt</p>
+                <p class="paper-card-list-text">{{ gpxMaxHeight }} m</p>
+            </div>
+        </div>
+
+        <div class="paper-card-list-item">
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Höhendifferenz</p>
+                <p class="paper-card-list-text">{{ gpxMaxHeight - gpxMinHeight }} m</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="paper-card-list">
+        <div class="paper-card-list-title">Metadaten</div>
+
+        <div class="paper-card-list-item">
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Beschreibung</p>
+                <p class="paper-card-list-text">{{ gpxMetadata.desc }}</p>
+            </div>
+        </div>
+
+        <div class="paper-card-list-item">
+            <div class="paper-card-list-content">
+                <p class="paper-card-list-sub">Datum</p>
+                <p class="paper-card-list-text">{{ gpxMetadata.time | date:"dd.MM.yyyy 'um' HH:mm" }}</p>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

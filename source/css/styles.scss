@@ -1,0 +1,70 @@
+@import "www/lib/material-colors/dist/colors.scss";
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        $md-blue-700 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../css/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+// @import  '../../www/lib/ionicons/scss/ionicons.scss';
+
+
+
+
+/*!
+ *  Material Design Iconic Font 1.0.1 by Sergey Kupletsky (@zavoloklom) - http://zavoloklom.github.io/material-design-iconic-font/
+ *  License - https://github.com/zavoloklom/material-design-iconic-font/blob/gh-pages/License.md (Attribution-ShareAlike 4.0 International license)
+ */
+// @import  '../../www/lib/material-design-iconic-font/scss/material-design-iconic-font';
+
+@import "../_ext/material-design-iconic-font/scss/_variables.scss";
+$md-font-path: "fonts";
+@import "../_ext/material-design-iconic-font/scss/_mixins";
+@import "../_ext/material-design-iconic-font/scss/_path";
+@import "../_ext/material-design-iconic-font/scss/_core";
+@import "../_ext/material-design-iconic-font/scss/_sizes";
+
+// @import "../_ext/material-design-iconic-font/scss/_border";
+// @import "../_ext/material-design-iconic-font/scss/_pulled";
+@import "../_ext/material-design-iconic-font/scss/_spinned";
+// @import "../_ext/material-design-iconic-font/scss/_rotated";
+
+@import "../_ext/material-design-iconic-font/scss/_icons";
+
+
+@import  'mod/paper-typo';
+@import  'mod/paper-base';
+
+$paper-theme : $md-blue-500;
+$paper-theme-dark : $md-blue-900;
+$paper-theme-light : $md-blue-100;
+$paper-theme-accent : $md-deep-orange-500;
+
+$paper-theme-icons : $md-white;
+$paper-theme-text : $md-grey-900;
+$paper-theme-text-2 : $md-grey-600;
+$paper-theme-divider : $md-grey-300;
+$paper-theme-hover : $md-grey-200;
+
+@import  'mod/paper';
+@import  'mod/paper-navigation';
+@import  'mod/style';
+@import  'mod/track';
+
+

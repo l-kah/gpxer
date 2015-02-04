@@ -1,0 +1,30 @@
+
+    <div class="paper-drawer animate-enter" ng-swipe-left="closeDrawer();"  ng-swipe-right="openDrawer();" ng-class="{ 'animate-enter-active' : paperDrawer }">
+
+            <div class="paper-drawer-title"><button class="md md-close  md-col-white paper-icon pull-right" ng-click="closeDrawer();"></button>
+            <p class="paper-drawer-item-text">GPXer</p>
+            </div>
+
+        <ul class="paper-drawer-items">
+
+            <li class="paper-drawer-item" ng-click="loadTrackList('internal');">
+                <i class="md md-storage  paper-icon paper-drawer-item-icon"></i>
+                <p class="paper-drawer-item-text">Interner Speicher</p>
+            </li>
+
+            <li class="paper-drawer-item" ng-click="loadTrackList('external');">
+                <i class="md md-sd-storage   paper-icon paper-drawer-item-icon"></i>
+                <p class="paper-drawer-item-text">Externer Speicher</p>
+            </li>
+
+            <li class="paper-drawer-item-divider" ng-click="loadTrackList('external');">
+                <i class="md md-settings  paper-icon paper-drawer-item-icon"></i>
+                <p class="paper-drawer-item-text">Einstellungen</p>
+            </li>
+            <li class="paper-drawer-item" ng-click="loadTrackList('external');">
+                <i class="md md-info   paper-icon paper-drawer-item-icon"></i>
+                <p class="paper-drawer-item-text">About</p>
+            </li>
+        </ul>
+
+    </div>

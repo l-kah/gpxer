@@ -1,0 +1,82 @@
+
+
+.bar, .tabs-striped, .tabs, .tab-nav {
+    
+ border: none !important;
+background-image: none !important;
+  }
+
+.tabs
+{
+
+box-sizing: border-box;
+height: 56px;
+top: 55px !important;
+margin: 0 0 0 0 !important;
+padding-top: 4px !important;
+
+   
+}
+
+
+.tab-item {
+@include paper-typo-button;
+
+
+}
+
+.pull-right {
+    float: right;
+}
+.pull-left {
+    float: left;
+}
+
+
+.popover { 
+    height:auto;
+     
+      }
+
+.item-divider
+{
+    font-weight: 700;
+}
+
+.card
+{
+}
+
+.tab-nav
+{
+    @extend .paper-header;
+}
+
+
+
+
+
+
+.paper-content::-webkit-scrollbar {
+    width: 9px;
+      display: block !important; 
+    border: none !important;
+
+
+}
+.paper-content::-webkit-scrollbar-thumb {
+    
+    background-color: #c0c0c0;
+    border-right: 5px solid #f8f8f8;
+}
+
+::-webkit-scrollbar-track {
+
+
+} 
+
+::-webkit-scrollbar-track-piece
+{
+
+}
+

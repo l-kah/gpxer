@@ -1,0 +1,199 @@
+html, body, input, textarea, li {
+    font-family: 'Roboto', sans-serif;
+color: $paper-theme-text;
+}
+
+.paper-base {
+    background-color: $md-grey-200;
+}
+
+.paper-reset {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.paper-icon {
+    background: none;
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    padding: 12px;
+    margin: 0;
+    border: none;
+    color: $paper-theme-icons;
+    border-radius: 50%;
+}
+.paper-icon:hover {
+    background-color: rgba(0, 0, 0, .05) !important;
+}
+.paper-fab {
+    display: inline-block;
+    position: relative;
+    border: none;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    color: black;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    margin: 10px;
+    box-shadow: $paper-depth3;
+    background-color: $paper-theme-icons;
+}
+.paper-fab .paper-fab-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 56px;
+    height: 56px;
+    border: none;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .025);
+    opacity: 0;
+}
+.paper-fab:hover {
+    box-shadow: $paper-depth4;
+}
+.paper-fab .paper-fab-content:hover {
+    opacity: 1;
+}
+.paper-card-list {
+    margin: 16px 12px 12px 12px;
+    display: block;
+    clear: both;
+    overflow: auto;
+    background: $paper-theme-icons;
+    border: 1px solid $paper-theme-divider;
+    border-radius: 2px;
+    box-shadow: $paper-depth1;
+}
+.paper-card-list-title {
+    @include paper-typo-title();
+    font-weight: $paper-weight-light !important;
+    padding: 12px;
+}
+.paper-card-list-item {
+    clear: both;
+    @include paper-typo-body();
+    padding: 12px;
+    border: none;
+    border-bottom: 1px solid $paper-theme-divider;
+    overflow: auto;
+    &:last-child {
+        border: none;
+    }
+}
+.paper-card-list-icon {
+    float: left;
+    margin: 6px 12px 0 0;
+    color: $paper-theme;
+}
+.paper-card-list-content {
+    float: left;
+    display: inline-block;
+    width: auto;
+    margin: 0 0 0 0;
+}
+p.paper-card-list-sub {
+    @include paper-typo-caption();
+    margin: 0;
+}
+p.paper-card-list-text {
+    @include paper-typo-body();
+}
+.paper-list {
+    clear: both;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto !important;
+    height: auto !important;
+}
+.paper-list-icon {
+    color: $paper-theme;
+}
+.paper-list-item {
+    overflow: auto;
+    clear: both;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid $paper-theme-divider;
+}
+.paper-list-item a {
+    display: block;
+    text-decoration: none;
+    margin: 0;
+    padding: 14px 0 10px 8px;
+}
+
+.paper-list-item a:hover {
+    background-color: rgba(0,0,0,.05);
+}
+.paper-list-content {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 0 0 8px;
+    overflow: hidden;
+    max-width: 80%;
+}
+.paper-list-body {
+    @include paper-typo-body2();
+    margin: 0.25em 0 0 0;
+    overflow: hidden;
+    height: 21px;
+}
+.paper-list-caption {
+    display: block;
+    margin: 0;
+    @include paper-typo-caption();
+}
+.paper-search {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 4px 4px 0 8px;
+      background-color: $paper-theme;
+}
+.paper-search-input {
+    width: calc(100vw - 140px);
+    height: 27px !important;
+    border-bottom: 1px solid $paper-theme-icons !important;
+    margin: 12px 16px 0 16px;
+    padding: 0 4px 0 8px !important;
+    font-family: $paper-font;
+    font-size: $paper-font-size-body;
+    line-height: $paper-font-size-body;
+   background-color: $paper-theme;
+   color: $paper-theme-icons !important;
+}
+input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, .5);
+    font-weight: $paper-weight-regular;
+    font-size: $paper-font-size-body;
+    padding: 2px 0 0 28px;
+    background-image: url(../images/icons/ic_search_white_18dp.png);
+    background-repeat: no-repeat;
+    background-position: 4px 0px;
+}
+.paper-content {
+    margin-top: 56px;
+    overflow-y: auto;
+    height: calc(100vh - 56px);
+}
+.paper-fold-2 {
+    margin-top: 112px;
+    height: calc(100vh - 112px);
+}
+.paper-fold-3 {
+    margin-top: 112px;
+    height: calc(100vh - 168px);
+}
+.paper-noscroll {
+    overflow: hidden;
+}
