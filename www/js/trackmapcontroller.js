@@ -4,6 +4,7 @@ app.controller('TrackMapController', function($scope, $ionicLoading, $interval, 
 
     $scope.mapLoaded = false;
 
+
     $scope.mapBounds = function() {
 
         $scope.map.center.latitude = $scope.mapLatCenter;

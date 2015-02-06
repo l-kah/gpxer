@@ -60,7 +60,7 @@
 }
 .paper-tab-active {
     color: $paper-theme-icons;
-    border-bottom: 2px solid $paper-theme-icons;
+    border-bottom: 2px solid $paper-theme-accent;
 }
 // ********************** 
 // *** paper drawer
@@ -143,4 +143,63 @@
 .animate-enter.animate-enter-active {
     transform: translate(0, 0);
     opacity: 1;
+}
+
+
+.paper-footer 
+{
+
+height: 56px;
+  padding: 0 0 0 0;
+  background-color: $md-white;
+  overflow: hidden;
+  width: 100vw;
+text-align: center;
+
+}
+
+.paper-footer-items
+{
+display: block;
+width: auto;
+transition: 0.2s cubic-bezier(.17, .67, .79, .96) all;
+padding: 6px 0 0 0;
+
+}
+
+
+// map compactinfos
+.paper-footer-item {
+   display: inline-block;
+    min-width: 28%;
+
+text-align: center;
+
+}
+
+.paper-footer-item-content {
+
+display: inline-block;
+width: auto;
+text-align: left;
+}
+
+.paper-footer-item span {
+    padding: 0 0 0 8px;
+    color: $paper-theme-text-2;
+    font-size: $paper-font-size-small;
+
+    display: inline-block;
+
+}
+.paper-footer-item i {
+    font-size: $paper-font-size-caption;
+    color: $paper-theme-text;
+
+}
+
+
+.paper-footer-ani
+{
+transform: translate(-120px, 0);
 }

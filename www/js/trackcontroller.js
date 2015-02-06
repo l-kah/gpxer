@@ -2,6 +2,7 @@
 
 app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $ionicHistory, $state, $location, DataSource, $timeout, track) {
 
+
     // *** show drawer
     $scope.showPaperDrawer = function() {
         $scope.$parent.toggleDrawer();
