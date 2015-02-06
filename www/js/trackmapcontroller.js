@@ -4,6 +4,33 @@ app.controller('TrackMapController', function($scope, $ionicLoading, $interval, 
 
     $scope.mapLoaded = false;
 
+    $scope.paperFooter = false;
+
+    curFitem = 0;
+    maxFitem = 6;
+    widthFitem = 120;
+    objF = document.querySelector('.paper-footer-items');
+    objW = document.documentElement.clientWidth;
+    console.log(objW);
+    $scope.leftFooter = function() {
+
+if (objW >= (maxFitem*widthFitem))
+        return;
+        if (curFitem < (maxFitem - 2)) {
+            curFitem++;
+            wert = (widthFitem * curFitem) * -1;
+            objF.style.transform = "translate(" + wert + "px,0)";
+        }
+    }
+
+    $scope.rightFooter = function() {
+        
+        if (curFitem > 0) {
+            curFitem--;
+            wert = (widthFitem * curFitem) * -1;
+            objF.style.transform = "translate(" + wert + "px,0)";
+        }
+    }
     $scope.mapBounds = function() {
 
         $scope.map.center.latitude = $scope.mapLatCenter;

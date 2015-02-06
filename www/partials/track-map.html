@@ -30,29 +30,31 @@
 </div>
 
 
-<div class="bar map-compactinfos bar-footer bar-light ">
+<div class="paper-footer">
 
-    <div class="row">
+    <div class="paper-footer-items" ng-swipe-left="leftFooter();"  ng-swipe-right="rightFooter();" ng-class="{ 'paper-footer-ani' : paperFooter }">
 
-        <div class="col map-compactinfos-item miniinfo-size1">
+        <div class="paper-footer-item paper-footer-item-1">
             <i class="md md-swap-calls"></i><span>{{ gpxDistance }}&nbsp;Km</span>
         </div>
 
-        <div class="col map-compactinfos-item">
-            <i class="md md-timer"></i><span>{{ gpxDuration | date:"HH:mm:ss" }}</span>
+        <div class="paper-footer-item paper-footer-item-2">
+            <i class="md md-timer"></i><span>{{ gpxDuration | date:"H:mm:ss" }}</span>
         </div>
 
-        <div class="col map-compactinfos-item miniinfo-size2">
-            <i class="md md-directions-walk"></i><span>{{ gpxPace | date:"mm.ss" }}&nbsp;min/Km<span class="rwd3"> / {{ gpxSpeed }}&nbsp;Km/h</span>
-            </span>
+        <div class="paper-footer-item paper-footer-item-3">
+            <i class="md md-directions-walk"></i><span>{{ gpxPace | date:"m.ss" }}&nbsp;min/Km</span>
         </div>
 
+        <div class="paper-footer-item paper-footer-item-4">
+            <i class="md md-directions-walk"></i><span>{{ gpxSpeed }}&nbsp;Km/h</span>
+        </div>
 
-        <div class="col map-compactinfos-item miniinfo-size2 rwd1">
+        <div class="paper-footer-item paper-footer-item-5">
             <i class="md md-landscape"></i><span>{{ gpxUp }}&nbsp;m / {{ gpxDown }}&nbsp;m</span>
         </div>
 
-        <div class="col map-compactinfos-item  miniinfo-size2 rwd2">
+        <div class="paper-footer-item  paper-footer-item-6">
             <i class="md md-import-export"></i><span>{{ gpxMaxHeight }}&nbsp;m / {{  gpxMinHeight  }}&nbsp;m</span>
         </div>
 

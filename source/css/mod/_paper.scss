@@ -14,6 +14,7 @@ color: $paper-theme-text;
 
 .paper-theme { background-color: $paper-theme; }
 .paper-theme-col { color: $paper-theme !important; }
+.paper-theme-col-accent { color: $paper-theme-accent !important; }
 
 .paper-icon {
     background: none;
@@ -180,9 +181,10 @@ input::-webkit-input-placeholder {
     font-weight: $paper-weight-regular;
     font-size: $paper-font-size-body;
     padding: 2px 0 0 28px;
-    background-image: url(../images/icons/ic_search_white_18dp.png);
+    background-image: url(../images/icons/ic_search_white_36dp.png);
     background-repeat: no-repeat;
     background-position: 4px 0px;
+    background-size: 18px 18px;
 }
 .paper-content {
     margin-top: 56px;

@@ -60,7 +60,7 @@
 }
 .paper-tab-active {
     color: $paper-theme-icons;
-    border-bottom: 2px solid $paper-theme-icons;
+    border-bottom: 2px solid $paper-theme-accent;
 }
 // ********************** 
 // *** paper drawer
@@ -143,4 +143,34 @@
 .animate-enter.animate-enter-active {
     transform: translate(0, 0);
     opacity: 1;
+}
+
+
+.paper-footer 
+{
+    position: relative;
+height: 56px;
+  padding: 0 0 0 0;
+  background-color: $md-white;
+  overflow: scroll;
+  width: 740px;
+
+
+}
+
+.paper-footer-items
+{
+display: block;
+    position: absolute;
+height: auto;
+width: auto;
+left: 0;
+top: 18px;
+transition: 0.2s cubic-bezier(.17, .67, .79, .96) all;
+
+}
+
+.paper-footer-ani
+{
+transform: translate(-120px, 0);
 }
