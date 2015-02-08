@@ -40,6 +40,7 @@
 
 
     <script src="js/ext_utils.js"></script>
+    <script src="js/simplify.js"></script>
 
     <script src="js/app.js"></script>
     <script src="js/rootcontroller.js"></script>
@@ -51,6 +52,7 @@
 
 <body ng-controller="rootController">
 
+<div class="paper-lightbox" ng-class="{'paper-lightbox-on':paperDrawer}" ng-click="paperDrawer=false;"></div>
 
     <ng-include src="'partials/main-nav-drawer.html'"></ng-include>
     <ui-view></ui-view>

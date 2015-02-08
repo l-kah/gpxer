@@ -10,17 +10,7 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
         $scope.$parent.closeDrawer();
     }
 
-    //  *** focus für search
-    $scope.setFocus = function() {
 
-
-        $timeout(setFocusWait, 750);
-    }
-
-    function setFocusWait() {
-        document.getElementById("inputSearch").focus();
-
-    }
 
     // *** ENDE search
 
@@ -38,8 +28,6 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
     };
 
     // ** END load track in trackview
-
-    //    $scope.tracks = TracksService.tracks
 
     // *** load gpx-list  and provide to scope
     gpxerReadFilelist = function(data, window) {
@@ -70,24 +58,6 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
             filedate: "-"
         }];
     }
-
-    // *** END load gpx-list 
-
-    // *** beispiel header auslesen
-    /*
-        $http.get(SOURCE_FILE).
-        success(function(data, status, headers, config) {
-            // this callback will be called asynchronously
-            // when the response is available
-            console.log("filesize:" + headers('Content-Length'));
-            console.log("filedate" + headers('Last-Modified'));
-        }).
-        error(function(data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
-    */
-    // *** ENDE beispiel header auslesen
 
     $scope.filesOrder = "filedate";
 

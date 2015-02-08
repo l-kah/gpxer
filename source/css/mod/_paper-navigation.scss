@@ -1,4 +1,23 @@
 // *** paper navigation
+.paper-lightbox {
+    z-index: -2;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 100%;
+    bottom: 100%;
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .2);
+    opacity: 0;
+    transition: 0.2s;
+}
+.paper-lightbox-on {
+    display: block;
+    opacity: 1;
+z-index: 2;
+}
 .paper-header {
     z-index: 1;
     overflow: auto;
@@ -8,7 +27,6 @@
     width: 100vw;
     height: 56px;
     box-shadow: $paper-depth2;
-
     background-color: $paper-theme;
 }
 .paper-header-lg {
@@ -69,12 +87,21 @@
     z-index: 9999;
     position: fixed;
     top: 0px;
-    left: 0;
+    left: -290px;
     width: 300px;
     height: 100vh;
     background-color: $paper-theme-icons;
     box-shadow: $paper-depth3;
+    // transform: translate(-295px, 0);
+    transition: 0.2s cubic-bezier(.17, .67, .79, .96) all;
+    opacity: 0.01;
 }
+
+.paper-drawer.paper-drawer-ani {
+    transform: translate(290px, 0);
+    opacity: 1;
+}
+
 .paper-drawer-title {
     overflow: auto;
     height: 168px;
@@ -108,10 +135,7 @@
         background-color: $paper-theme-hover;
     }
 }
-
-.paper-drawer-item-divider
-{
-
+.paper-drawer-item-divider {
     width: 100%;
     @extend .paper-drawer-item;
     border-top: 1px solid $paper-theme-divider;
@@ -121,12 +145,9 @@
     float: left;
     color: $paper-theme-text-2;
 }
-.paper-drawer-item-icon.paper-icon:hover
-{
-    background: none !important;  
-
+.paper-drawer-item-icon.paper-icon:hover {
+    background: none !important;
 }
-
 .paper-drawer-item-text {
     float: left;
     margin: 0;
@@ -135,71 +156,59 @@
     font-size: $paper-font-size-tabs;
     color: $paper-theme-text;
 }
-.animate-enter {
-    transform: translate(-295px, 0);
+
+.paper-footer {
+    height: 56px;
+    padding: 0 0 0 0;
+    background-color: $md-white;
+    overflow: hidden;
+    width: 100vw;
+    text-align: center;
+}
+.paper-footer-items {
+    display: block;
+    width: auto;
     transition: 0.2s cubic-bezier(.17, .67, .79, .96) all;
-    opacity: 0.01;
+    padding: 6px 0 0 0;
 }
-.animate-enter.animate-enter-active {
-    transform: translate(0, 0);
-    opacity: 1;
-}
-
-
-.paper-footer 
-{
-
-height: 56px;
-  padding: 0 0 0 0;
-  background-color: $md-white;
-  overflow: hidden;
-  width: 100vw;
-text-align: center;
-
-}
-
-.paper-footer-items
-{
-display: block;
-width: auto;
-transition: 0.2s cubic-bezier(.17, .67, .79, .96) all;
-padding: 6px 0 0 0;
-
-}
-
-
 // map compactinfos
 .paper-footer-item {
-   display: inline-block;
+    display: inline-block;
     min-width: 28%;
-
-text-align: center;
-
+    text-align: center;
 }
-
 .paper-footer-item-content {
-
-display: inline-block;
-width: auto;
-text-align: left;
+    display: inline-block;
+    width: auto;
+    text-align: center;
 }
-
 .paper-footer-item span {
-    padding: 0 0 0 8px;
+    padding: 0 0 0 0;
     color: $paper-theme-text-2;
     font-size: $paper-font-size-small;
-
     display: inline-block;
-
 }
 .paper-footer-item i {
+    display: inline-block;
     font-size: $paper-font-size-caption;
     color: $paper-theme-text;
-
+    margin: 0 8px 0 0;
+}
+.paper-footer-ani {
+    transform: translate(-120px, 0);
 }
 
 
-.paper-footer-ani
+.paper-popup
 {
-transform: translate(-120px, 0);
+    display: block;
+    width: 300px;
+    height: auto;
+    position: absolute;
+
+    right: 16px;
+    top: 60px;
+
+    background-color: $paper-theme-divider;
+    
 }

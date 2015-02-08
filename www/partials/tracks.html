@@ -4,10 +4,10 @@
         <h1 class="paper-toolbar-title">Strecken ({{ fileSource }})</h1>
         
         <button class="md-col-white md md-more-vert paper-icon pull-right" ng-click="openPopover($event)"></button>
-        <button class="md-col-white md md-search paper-icon pull-right" ng-hide="tracksSearch" ng-click="tracksSearch=!tracksSearch;setFocus();"></button>
+        <button class="md-col-white md md-search paper-icon pull-right" ng-hide="tracksSearch" ng-click="tracksSearch=!tracksSearch;"></button>
 
         <div class="paper-search" ng-show="tracksSearch">
-            <button class="md-col-white md md-close paper-icon pull-right" ng-show="tracksSearch" ng-click="filesQuery='';"></button>
+            <button class="md-col-white md md-close paper-icon pull-right"   ng-class="{'paper-transparent':!filesQuery }" ng-click="filesQuery='';"></button>
             <input type="text" placeholder="Nach Strecken suchen" ng-model="filesQuery" ng-show="tracksSearch" id="inputSearch" class="paper-search-input pull-right">
             <button class="md-col-white md md-arrow-back paper-icon pull-left" ng-click="tracksSearch=!tracksSearch;filesQuery='';"></button>
         </div>
@@ -41,7 +41,7 @@
         <ul class="list">
             <li class="item item-divider">Sortieren nach</li>
             <li class="item" ng-click="popover.scope.sortTracks('filename');">Dateiname</li>
-            <li class="item" ng-click="popover.scope.sortTracks('filedate');">Datum</li>
+            <li class="item" ng-click="popover.scope.sortTracks('timestamp');">Datum</li>
             <li class="item" ng-click="popover.scope.sortTracks('filesize');">Dateigröße</li>
         </ul>
     </ion-popover-view>

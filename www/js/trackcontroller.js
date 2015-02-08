@@ -36,6 +36,10 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
         var x2js = new X2JS();
         var json = x2js.xml_str2json(data);
         var gpxPoints = json.gpx.trk.trkseg.trkpt;
+        var gpxPointsLen = gpxPoints.length;
+
+        gpxPoints2 = simplify(gpxPoints, 0.00035); //  0.00035 ungenauer fuer hoehenmete
+        gpxPoints = simplify(gpxPoints, 0.00004); //  0.00007-5 guter mittelwert 
 
         gpxPoints[0].dist = 0;
 
@@ -91,32 +95,48 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
             dlat, a, c, d, dTotal = 0;
 
 
-        var p = 0;
-
-
         var maxHeight = minHeight = gpxPoints[0].ele;
 
-        var lonMin, lonMax, latMin, latMax, eleCur;
 
+        var lonMin = lonMax = gpxPoints[0]._lon;
+        var latMin = latMax = gpxPoints[0]._lat;
+
+        var eleCur;
+        var hDown = 0,
+            hUp = 0;
 
         // *** zwischenzeiten
         var timeStartTmp = new Date(gpxPoints[0].time),
             timeEndTmp = 0;
 
         var stepDetails = [];
+
+        var xmlPoints = [];
+
         // *** END zwischenzeiten
 
 
+        var latitude, longitude;
 
         // *********************
         // *** start loop
         // *********************
 
-        for (p = 0; p < gpxPoints.length; p++) {
+        for (var p = 0; p < gpxPoints.length; p++) {
+
+            latitude = gpxPoints[p]._lat * 1;
+            longitude = gpxPoints[p]._lon * 1;
+            elevation = gpxPoints[p].ele * 1;
+
+            xmlPoints.push({
+                latitude: latitude,
+                longitude: longitude
+            });
+
 
             // *** min / max höhe
 
-            eleCur = gpxPoints[p].ele * 1;
+            eleCur = elevation;
 
             if (eleCur > maxHeight)
                 maxHeight = eleCur;
@@ -126,14 +146,34 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
 
             // *** min / max höhe
 
+
+
             if (p > 0) {
+
+                // *** boundaries
+
+                if (longitude < lonMin)
+                    lonMin = longitude;
+
+                if (latitude < latMin)
+                    latMin = latitude;
+
+                if (longitude > lonMax)
+                    lonMax = longitude;
+                // breitengrad nord - sued 
+
+                if (latitude > latMax)
+                    latMax = latitude;
+
+                // *** END boundaries
+
 
                 // ** distanz zwischen zwei punkten
 
                 lat1 = gpxPoints[p - 1]._lat * 1;
                 lon1 = gpxPoints[p - 1]._lon * 1;
-                lat2 = gpxPoints[p]._lat * 1;
-                lon2 = gpxPoints[p]._lon * 1;
+                lat2 = latitude;
+                lon2 = longitude;
 
                 R = 6371;
                 dLat = (lat2 - lat1) * Math.PI / 180;
@@ -210,6 +250,31 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
             }
         }
 
+        // *** hoehenmeter
+        //  ungenauer, wegen gps schwankungen, nur schlechte annäherung
+        for (var p = 0; p < gpxPoints2.length; p++) {
+
+            eleCur = gpxPoints2[p].ele;
+
+            if (p > 0) {
+
+                eleCur2 = gpxPoints2[p - 1].ele;
+
+                if (eleCur > eleCur2) {
+                    hUp += (eleCur) - (eleCur2);
+                } else if (eleCur < eleCur2) {
+                    hDown += (eleCur2) - (eleCur);
+                }
+
+            }
+
+        }
+
+        // *** ENDE hoehenmeter
+
+
+
+
 
         perfTimer = new Date().getTime() - perfTimer;
         console.log("time for gpx-data init: " + (perfTimer / 1000) + " seconds.");
@@ -220,89 +285,10 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
         // *********************
 
 
-
-        var eleCur2 = 0;
-        var hUp = 0;
-        var hDown = 0;
-
-        // *********************
-        // *** simplyfied polyline
-        // *********************
-        var xmlPoints = [],
-            xp = 0;
-
-        for (p = 0; p < gpxPoints.length; p = p + 4) {
-
-            xmlPoints[xp] = {
-                latitude: gpxPoints[p]._lat * 1,
-                longitude: gpxPoints[p]._lon * 1
-            }
-            if (p == 0) {
-                lonMin = xmlPoints[0].longitude;
-                lonMax = lonMin;
-                latMin = xmlPoints[0].latitude;
-                latMax = latMin;
-            } else {
-
-                if (xmlPoints[xp].longitude < lonMin)
-                    lonMin = xmlPoints[xp].longitude;
-
-                if (xmlPoints[xp].latitude < latMin)
-                    latMin = xmlPoints[xp].latitude;
-
-                if (xmlPoints[xp].longitude > lonMax)
-                    lonMax = xmlPoints[xp].longitude;
-                // breitengrad nord - sued 
-
-                if (xmlPoints[xp].latitude > latMax)
-                    latMax = xmlPoints[xp].latitude;
-
-
-                // *** hoehenmeter
-                //  ungenauer, wegen gps schwankungen, nur schlechte annäherung
-                eleCur = gpxPoints[xp].ele;
-                eleCur2 = gpxPoints[xp - 1].ele;
-
-                if (eleCur > eleCur2)
-                    hUp += (eleCur) - (eleCur2);
-                else if (eleCur < eleCur2)
-                    hDown += (eleCur2) - (eleCur);
-
-                // *** ENDE hoehenmeter
-            }
-
-            xp++;
-
-        }
-
         // *********************
         // *** END simplyfied polyline
         // *********************
 
-
-
-        // *** build chartdata höhenmeter
-
-        var chartData = [];
-        var phStepDiv = 200; // maximal 200 Punkte im Diagramm
-        if (gpxPoints.length < phStepDiv)
-            phStepDiv = gpxPoints.length;
-
-        var phStep = Math.floor(gpxPoints.length / phStepDiv);
-
-        //  phStep = 6;
-        for (ph = 0; ph < gpxPoints.length; ph += phStep) {
-
-            chartData.push({
-                "c": [{
-                    "v": Math.round(gpxPoints[ph].dist * 10) / 10 // 2 nachkommastellen
-                }, {
-                    "v": gpxPoints[ph].ele,
-                    "f": gpxPoints[ph].ele + " Meter"
-                }]
-            });
-        }
-        // *** END build chartdata
 
 
 
@@ -353,16 +339,16 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
 
         // *** prepare details variable
 
-        var gpsHeightDiff = 0; // 48.7
+        var gpsHeightDiff = 48.7 // gps ist falsch
 
-        $scope.gpxMaxHeight = maxHeight - gpsHeightDiff;
-        $scope.gpxMinHeight = minHeight - gpsHeightDiff;
+        $scope.gpxMaxHeight = Math.round(maxHeight - gpsHeightDiff);
+        $scope.gpxMinHeight = Math.round(minHeight - gpsHeightDiff);
         $scope.gpxDistance = Math.round(dTotal * 100) / 100;
         $scope.gpxPace = gpxpace;
         $scope.gpxSpeed = gpxspeed;
         $scope.gpxUp = hUp;
         $scope.gpxDown = hDown;
-        $scope.gpxPoints = gpxPoints.length;
+        $scope.gpxPointsLen = gpxPointsLen;
 
         $scope.gpxDuration = gpxdur;
 
@@ -515,8 +501,33 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
         // ********************
 
 
+        // *** build chartdata höhenmeter
+
+        var chartData = [];
+        var phStepDiv = 200; // maximal 200 Punkte im Diagramm
+        if (gpxPoints.length < phStepDiv)
+            phStepDiv = gpxPoints.length;
+
+        var phStep = Math.floor(gpxPoints.length / phStepDiv);
+
+        //  phStep = 6;
+        for (ph = 0; ph < gpxPoints.length; ph += phStep) {
+
+            chartData.push({
+                "c": [{
+                        "v": Math.round(gpxPoints[ph].dist * 10) / 10 // 2 nachkommastellen
+                    }, {
+                        "v": gpxPoints[ph].ele,
+                        "f": gpxPoints[ph].ele + " Meter"
+                    }
+
+                ]
+            });
+        }
+        // *** END build chartdata
+
         $scope.chartObject = {
-            "type": "LineChart",
+            "type": "AreaChart",
             "displayed": true,
             "data": {
                 "cols": [{
@@ -538,16 +549,17 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
 
             },
             "options": {
+                "curveType": "function",
                 "title": "",
                 "isStacked": "true",
                 "fill": 20,
                 "displayExactValues": true,
-                "vAxis": {
+                   "vAxis": {
                     textStyle: {
                         fontSize: 12
                     },
 
-                    "title": "Höhe",
+                    "title": "",
                     titleTextStyle: {
                         color: '#757575'
                     },
@@ -574,15 +586,15 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
                 lineWidth: 2,
                 axisTitlesPosition: 'out',
                 chartArea: {
-                    left: '15%',
-                    top: '15%',
-                    width: '80%',
+                    left: '10%',
+                    top: '10%',
+                    width: '85%',
                     height: '60%'
                 },
                 legend: {
                     position: 'none'
                 },
-                colors: ['#FF5722'],
+                colors: ['#4CAF50'],
             },
         }
 

@@ -36,27 +36,27 @@
 
         <div class="paper-footer-item">
             <div class="paper-footer-item-content">
-                <i class="md md-directions-walk"></i><span>{{ gpxDistance }}&nbsp;Km</span>
+                <span><i class="md md-directions-walk"></i>{{ gpxDistance }}&nbsp;Km</span>
                 <br>
-                <i class="md md-timelapse"></i><span>{{ gpxDuration | date:"H:mm:ss" }}</span>
+                <span><i class="md md-timelapse"></i>{{ gpxDuration | date:"H:mm:ss" }}</span>
             </div>
         </div>
 
 
         <div class="paper-footer-item">
             <div class="paper-footer-item-content">
-                <i class="md md-timer"></i><span>{{ gpxPace | date:"m.ss" }}&nbsp;min/Km</span>
+                <span><i class="md md-timer"></i>{{ gpxPace | date:"m.ss" }}&nbsp;min/Km</span>
                 <br>
-                <i class="md md-schedule"></i><span>{{ gpxSpeed }}&nbsp;Km/h</span>
+                <span><i class="md md-schedule"></i>{{ gpxSpeed }}&nbsp;Km/h</span>
             </div>
         </div>
 
 
         <div class="paper-footer-item">
             <div class="paper-footer-item-content">
+                <i class="md md-landscape"></i><span>{{ gpxMinHeight }}&nbsp;m / {{  gpxMaxHeight  }}&nbsp;m</span>
+                <br>
                 <i class="md md-swap-vert"></i><span>{{ gpxUp }}&nbsp;m / {{ gpxDown }}&nbsp;m</span>
-                <br>
-                <i class="md md-landscape"></i><span>{{ gpxMaxHeight }}&nbsp;m / {{  gpxMinHeight  }}&nbsp;m</span>
             </div>
         </div>
 
