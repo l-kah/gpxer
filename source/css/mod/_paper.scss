@@ -32,10 +32,11 @@ html, body, input, textarea, li {
     border: none;
     color: $paper-theme-icons;
     border-radius: 50%;
+&:hover { background-color: rgba(0, 0, 0, .05) !important;}
+&:active { background-color: rgba(0, 0, 0, .2) !important;}
+
 }
-.paper-icon:hover {
-    background-color: rgba(0, 0, 0, .05) !important;
-}
+
 .paper-fab {
     display: inline-block;
     position: relative;
@@ -103,9 +104,10 @@ html, body, input, textarea, li {
 }
 .paper-card-list-content {
     float: left;
-    display: inline-block;
-    width: auto;
+    display: block;
     margin: 0 0 0 0;
+
+    width: calc(100% - 72px);
 }
 p.paper-card-list-sub {
     @include paper-typo-caption();
@@ -115,6 +117,7 @@ p.paper-card-list-text {
     @include paper-typo-body();
 }
 .paper-list {
+
     clear: both;
     margin: 0;
     padding: 0;
@@ -125,22 +128,17 @@ p.paper-card-list-text {
     color: $paper-theme;
 }
 .paper-list-item {
-    overflow: auto;
     clear: both;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    border-bottom: 1px solid $paper-theme-divider;
-}
-.paper-list-item a {
     display: block;
-    text-decoration: none;
+    list-style-type: none;
+    border-bottom: 1px solid $paper-theme-divider;
     margin: 0;
     padding: 14px 0 10px 8px;
+        &:active {
+        background-color: $md-grey-200;
+    }
 }
-.paper-list-item a:hover {
-    background-color: rgba(0, 0, 0, .05);
-}
+
 .paper-list-content {
     cursor: pointer;
     display: inline-block;
@@ -195,9 +193,23 @@ input::-webkit-input-placeholder {
 }
 .paper-content {
     margin-top: 56px;
-    overflow-y: auto;
+      overflow: hidden;
+    overflow-y: overlay;
+    
     height: calc(100vh - 56px);
+
 }
+
+.paper-content2 {
+    margin-top: 56px;
+    overflow: hidden;
+    overflow-y: overlay;
+    height: calc(100vh - 56px);
+
+
+    
+}
+
 .paper-fold-2 {
     margin-top: 112px;
     height: calc(100vh - 112px);
@@ -209,3 +221,37 @@ input::-webkit-input-placeholder {
 .paper-noscroll {
     overflow: hidden;
 }
+
+
+
+
+
+
+
+.paper-content::-webkit-scrollbar, .paper-content2::-webkit-scrollbar  {
+    display: none;
+    width: 14px;
+    height: 18px;
+    background-color: transparent;
+}
+.paper-content::-webkit-scrollbar-thumb, .paper-content2::-webkit-scrollbar-thumb {
+    height: 6px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    -webkit-border-radius: 7px;
+    background-color: rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+}
+.paper-content::-webkit-scrollbar-button, .paper-content2::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+}
+.paper-content::-webkit-scrollbar-corner, .paper-content2::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+.paper-content::-webkit-scrollbar {
+    display: block;
+}
+

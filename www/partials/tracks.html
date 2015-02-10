@@ -3,7 +3,7 @@
         <button class="md md-menu paper-icon"  ng-click="showPaperDrawer();"></button>
         <h1 class="paper-toolbar-title">Strecken ({{ fileSource }})</h1>
         
-        <button class="md-col-white md md-more-vert paper-icon pull-right" ng-click="openPopover($event)"></button>
+        <button class="md-col-white md md-more-vert paper-icon pull-right" ng-click="togglePaperPopup($event)"></button>
         <button class="md-col-white md md-search paper-icon pull-right" ng-hide="tracksSearch" ng-click="tracksSearch=!tracksSearch;"></button>
 
         <div class="paper-search" ng-show="tracksSearch">
@@ -18,31 +18,29 @@
 
     <ul class="paper-list">
 
-        <li class="paper-list-item" ng-repeat="track in tracks | orderBy:filesOrder:reverse | filter : filesQuery">
-            <a ng-click="loadTrack(track.filename);">
-
-                <i class="md md-place paper-icon paper-list-icon  pull-left"></i>
+        <li class="paper-list-item" ng-repeat="track in tracks | orderBy:filesOrder:reverse | filter : filesQuery | limitTo:500" ng-click="loadTrack(track.filename);">
+                 <i class="md md-place paper-icon paper-list-icon  pull-left"></i>
                 <div class="paper-list-content">
                     <p class="paper-list-body">{{ track.filename }}</p>
                     <p class="paper-list-caption">{{ track.filedate }} {{ track.filesize }}</p>
                 </div>
-            </a>
-            <li>
+               <li>
     </ul>
-
 
 </div>
 
 
 
 
-<script id="tracks-menu.html" type="text/ng-template">
-    <ion-popover-view>
-        <ul class="list">
-            <li class="item item-divider">Sortieren nach</li>
-            <li class="item" ng-click="popover.scope.sortTracks('filename');">Dateiname</li>
-            <li class="item" ng-click="popover.scope.sortTracks('timestamp');">Datum</li>
-            <li class="item" ng-click="popover.scope.sortTracks('filesize');">Dateigröße</li>
+
+    <div class="paper-popup" ng-class="{'paper-popup-ani':paperOver}">
+        <ul class="paper-popup-items">
+            <li class="paper-popup-title">Sortieren nach</li>
+            <li class="paper-popup-item" ng-click="sortTracks('filename');">Dateiname</li>
+            <li class="paper-popup-item" ng-click="sortTracks('timestamp');">Datum</li>
+            <li class="paper-popup-item" ng-click="sortTracks('filesize');">Dateigröße</li>
         </ul>
-    </ion-popover-view>
-</script>
+    </div>
+
+
+<div class="paper-lightbox" ng-class="{'paper-lightbox-on':paperOver}" ng-click="paperOver=false;"></div>

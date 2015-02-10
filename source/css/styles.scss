@@ -63,6 +63,11 @@ $paper-theme-text-2 : $md-grey-600;
 $paper-theme-divider : $md-grey-300;
 $paper-theme-hover : $md-grey-200;
 
+.paper-typo-caption
+{
+  @include paper-typo-caption();
+}
+
 @import  'mod/paper';
 @import  'mod/paper-navigation';
 @import  'mod/style';

@@ -52,31 +52,3 @@ padding-top: 4px !important;
     @extend .paper-header;
 }
 
-
-
-
-
-
-.paper-content::-webkit-scrollbar {
-    width: 9px;
-      display: block !important; 
-    border: none !important;
-
-
-}
-.paper-content::-webkit-scrollbar-thumb {
-    
-    background-color: #c0c0c0;
-    border-right: 5px solid #f8f8f8;
-}
-
-::-webkit-scrollbar-track {
-
-
-} 
-
-::-webkit-scrollbar-track-piece
-{
-
-}
-

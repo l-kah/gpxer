@@ -10,6 +10,7 @@
     "material-colors": "~1.0.0",
     "angular-google-chart": "~0.0.11",
     "angularjs": "~1.3.11",
-    "angular-touch": "1.3.12"
+    "angular-touch": "1.3.12",
+"angular-gestures": "latest"
   }
 }

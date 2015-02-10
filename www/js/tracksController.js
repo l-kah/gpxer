@@ -1,8 +1,8 @@
 // ***  TRACKLIST Controller
 
-app.controller('TracklistController', function($scope, $rootScope, $state, $location, $ionicHistory, DataSource, $timeout, $http, $ionicPopover, fileSource) {
+app.controller('TracklistController', function($scope, $rootScope, $state, $location, DataSource, $timeout, $http, fileSource) {
 
-// ** drawer 
+    // ** drawer 
     $scope.showPaperDrawer = function() {
         $scope.$parent.toggleDrawer();
     }
@@ -21,7 +21,7 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
         $scope.tracksSearch = false;
         $scope.filesQuery = '';
 
-        $state.go('track.map', {
+        $state.go('track', {
             'track': id
         });
 
@@ -32,14 +32,14 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
     // *** load gpx-list  and provide to scope
     gpxerReadFilelist = function(data, window) {
         var validJSON = JSON.parse(data);
-
-
-        for (var i = 0; i < validJSON.gpxFiles.length; i++) {
-            validJSON.gpxFiles[i].timestamp = new Date(validJSON.gpxFiles[i].filedate);
+        for (var i = 0; i < validJSON.length; i++) {
+            validJSON[i].timestamp = new Date(validJSON[i].filedate);
         }
+        $scope.tracks = validJSON;
+        $scope.$parent.tracklist = validJSON;
 
-        $scope.tracks = validJSON.gpxFiles;
-
+                perfTimer = new Date().getTime() - perfTimer;
+        console.log("time for gpx-data init: " + (perfTimer / 1000) + " seconds.");
     }
 
     if (!fileSource)
@@ -47,10 +47,16 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
 
     $scope.fileSource = fileSource;
 
-
+        var perfTimer = new Date().getTime();
     if (fileSource == "internal") {
         SOURCE_FILE = "gpx-data/gpxData.json";
-        DataSource.get(SOURCE_FILE, gpxerReadFilelist);
+        if (!$scope.$parent.tracklist) {
+            console.log('no scope:');
+            DataSource.get(SOURCE_FILE, gpxerReadFilelist);
+        }
+        else {
+            $scope.tracks = $scope.$parent.tracklist;
+        }
     } else {
         $scope.tracks = [{
             filesize: "",
@@ -64,41 +70,23 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
     // *** sort tracks
     $scope.sortTracks = function(sortBy) {
 
-            $scope.popover.hide();
+            $scope.togglePaperPopup();
             $scope.filesOrder = sortBy;
             $scope.reverse = !$scope.reverse;
         }
         // *** ENDsort tracks
 
     // *** popover menu
-    $ionicPopover.fromTemplateUrl('tracks-menu.html', {
-        scope: $scope,
-    }).then(function(popover) {
-        $scope.popover = popover;
-    });
+    $scope.paperOver = false;
 
-    $scope.openPopover = function($event) {
-        $scope.popover.show($event);
-    };
-    $scope.closePopover = function() {
-        $scope.popover.hide();
-    };
-    //Cleanup the popover when we're done with it!
-    $scope.$on('$destroy', function() {
-        $scope.popover.remove();
-    });
-    // Execute action on hide popover
-    $scope.$on('popover.hidden', function() {
-        // Execute action
-    });
-    // Execute action on remove popover
-    $scope.$on('popover.removed', function() {
-        // Execute action
-    });
+    $scope.togglePaperPopup = function() {
+        $scope.paperOver = !$scope.paperOver;
+        $scope.paperLightbox = !$scope.paperLightbox;
+    }
+
 
     // *** END popover menu
 
 });
 
 // *** ENDE TRACKLIST Controller
-

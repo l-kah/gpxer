@@ -48,6 +48,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         url: '/tracks/:filesource',
         templateUrl: 'partials/tracks.html',
         controller: 'TracklistController',
+        reloadOnSearch: false,
         resolve: {
             fileSource: function($stateParams) {
                 return $stateParams.filesource
@@ -57,29 +58,15 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     })
 
     $stateProvider.state('track', {
-        url: '/tracks/:track',
+        url: '/track/:track',
         templateUrl: 'partials/track.html',
         controller: 'TrackController',
+        reloadOnSearch: false,
         resolve: {
             track: function($stateParams) {
                 return $stateParams.track
             }
         }
-    })
-
-    $stateProvider.state('track.map', {
-        url: '/map',
-        templateUrl: 'partials/track-map.html',
-        controller: 'TrackMapController',
-
-
-
-    })
-
-    $stateProvider.state('track.infos', {
-        url: '/infos',
-        templateUrl: 'partials/track-infos.html',
-
     })
 
 

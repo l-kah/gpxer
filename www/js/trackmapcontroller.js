@@ -9,10 +9,9 @@ app.controller('TrackMapController', function($scope, $ionicLoading, $interval, 
 
         $scope.map.center.latitude = $scope.mapLatCenter;
         $scope.map.center.longitude = $scope.mapLongCenter;
-        // $scope.map.bounds = mapBounds;
-        $scope.map.zoom = 12;
 
-        // $scope.marker.options.visible = false;
+        $scope.map.bounds = $scope.mapPolyBounds;
+        $scope.map.zoom = $scope.mapZoom;
 
     }
 

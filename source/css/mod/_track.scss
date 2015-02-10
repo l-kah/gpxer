@@ -1,25 +1,22 @@
-.tabTrackdetails {
-    padding-top: 0;
+.map-infos {
+    margin: 0 0 0 0;
+    padding: 0 0 6px 0;
     overflow: auto;
 }
-#map_canvas {
+.map-container {
     position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: calc(100vh);
-}
-#map_canvas img {
-    max-width: 100vw;
+    height: calc(100vh - 56px);
     width: 100vw;
 }
 .angular-google-map-container {
+    display: block;
+    overflow: hidden;
     margin: 0 0 0 0;
-    height: calc(100vh - 168px);
+    height: calc(100vh - 112px);
     width: 100vw;
 }
 .track-chart {
-    height: 300px;
+    height: 316px;
     overflow: hidden;
 }
 .map-fabs {
@@ -28,14 +25,75 @@
     width: 80px;
     height: auto;
     position: absolute;
-    bottom: 76px;
-    right: 0px;
+    bottom: 72px;
+    right: 0;
     background: none;
 }
+.map-footer {
+    height: 56px;
+    padding: 0 0 0 0;
+    background-color: $md-white;
+    overflow: hidden;
+    width: 100vw;
+    text-align: center;
+    border-bottom: 1px solid $md-grey-300;
+}
+.map-footer-items {
+    display: block;
+    width: auto;
+    transition: 0.2s cubic-bezier(.17, .67, .79, .96) all;
+    padding: 6px 0 0 0;
+}
+// map compactinfos
+.map-footer-item {
+    display: inline-block;
+    min-width: 28%;
+    text-align: center;
+}
+.map-footer-item-content {
+    display: inline-block;
+    width: auto;
+    text-align: center;
+}
+.map-footer-item span {
+    padding: 0 0 0 0;
+    color: $paper-theme-text-2;
+    font-size: $paper-font-size-small;
+    display: inline-block;
+}
+.map-footer-item i {
+    display: inline-block;
+    font-size: $paper-font-size-caption;
+    color: $paper-theme-text;
+    margin: 0 8px 0 0;
+}
+.map-footer-ani {
+    transform: translate(-120px, 0);
+}
+.map-card-col {
 
+    display: inline-block;
+    width: auto;
+    @media screen and (max-width: 440px) {
+            display: block;
+            width: 100%;
+    }
+}
 .push-right {
     float: right;
-    font-weight: $paper-weight-medium;
+}
+.push-left {
+    float: left;
+}
+
+.Vertical-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%); /* For mozilla support */
+    -webkit-transform: translateY(-50%); /* For safari support */
+    -ms-transform: translateY(-50%); /* For IE support */
+    -o-transform: translateY(-50%); /* For opera support */
 }
 
 

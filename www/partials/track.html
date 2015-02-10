@@ -1,19 +1,15 @@
-<div class="paper-header-lg">
+<div class="paper-header">
     <div class="paper-toolbar">
         <button class="md md-arrow-back paper-icon" ng-click="loadTracks();"></button>
-        <h1 class="paper-toolbar-title">Strecke
+        <h1 class="paper-toolbar-title-sub">Strecke
  <span class="paper-toolbar-subtitle">{{ curTrackfile }}</span>
         </h1>
 
-
     </div>
-
-
-    <ul class="paper-tabs">
-        <li class="paper-tab" ng-class="{'paper-tab-active' : tabMap }" ng-click="tabMap=true;tabInfos=false;loadTab('map');">Karte</li>
-        <li class="paper-tab" ng-class="{'paper-tab-active' : tabInfos }" ng-click="tabMap=false;tabInfos=true;loadTab('infos');">Details</li>
-    </ul>
 </div>
 
+<div class="paper-content2">
+    <div ng-include="'partials/track-map.html'"></div>
+    <div ng-include="'partials/track-infos.html'"></div>
 
-<ui-view></ui-view>
+</div>

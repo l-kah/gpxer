@@ -1,18 +1,16 @@
-<div class="paper-content paper-fold-3 paper-noscroll">
+<div class="map-container">
 
-    <div id="map_canvas" class="map-container">
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options" control="map.control" bounds="map.bounds">
+        <ui-gmap-polyline path="map.path" stroke="map.stroke" fit="map.fit" geodesic="true" static="true"></ui-gmap-polyline>
 
-        <ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options" control="map.control" bounds="map.bounds">
-            <ui-gmap-polyline path="map.path" stroke="map.stroke" fit="map.fit" geodesic="true" static="true"></ui-gmap-polyline>
+        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+            <ui-gmap-markers models="markersDiststeps" coords="'self'" icon="'icon'" options="'options'" isLabel='true'></ui-gmap-markers>
 
-            <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-                <ui-gmap-markers models="markersDiststeps" coords="'self'" icon="'icon'" options="'options'" isLabel='true'></ui-gmap-markers>
+        </ui-gmap-marker>
 
-            </ui-gmap-marker>
+    </ui-gmap-google-map>
 
-        </ui-gmap-google-map>
 
-    </div>
 
     <div class="map-fabs">
         <button ng-click="toggleGPS()" class="paper-fab md md-gps-fixed" ng-class="{'paper-theme-col':gpsLock}"><span class="paper-fab-content"></span>
@@ -22,42 +20,39 @@
     </div>
 
 
-    <div class="map-debug">{{ mapDebug }}
-        <br> {{ map.center }}
-        <br> {{ longCenter }}
-    </div>
-
-</div>
 
 
-<div class="paper-footer">
+    <div class="map-footer">
 
-    <div class="paper-footer-items">
+        <div class="map-footer-items">
 
-        <div class="paper-footer-item">
-            <div class="paper-footer-item-content">
-                <span><i class="md md-directions-walk"></i>{{ gpxDistance }}&nbsp;Km</span>
-                <br>
-                <span><i class="md md-timelapse"></i>{{ gpxDuration | date:"H:mm:ss" }}</span>
+            <div class="map-footer-item">
+                <div class="map-footer-item-content">
+                    <span><i class="md md-directions-walk"></i>{{ gpxDistance }}&nbsp;Km</span>
+                    <br>
+                    <span><i class="md md-timelapse"></i>{{ gpxDuration | date:"H:mm:ss" }}</span>
+                </div>
             </div>
-        </div>
 
 
-        <div class="paper-footer-item">
-            <div class="paper-footer-item-content">
-                <span><i class="md md-timer"></i>{{ gpxPace | date:"m.ss" }}&nbsp;min/Km</span>
-                <br>
-                <span><i class="md md-schedule"></i>{{ gpxSpeed }}&nbsp;Km/h</span>
+            <div class="map-footer-item">
+                <div class="map-footer-item-content">
+                    <span><i class="md md-timer"></i>{{ gpxPace | date:"m.ss" }}&nbsp;min/Km</span>
+                    <br>
+                    <span><i class="md md-schedule"></i>{{ gpxSpeed }}&nbsp;Km/h</span>
+                </div>
             </div>
-        </div>
 
 
-        <div class="paper-footer-item">
-            <div class="paper-footer-item-content">
-                <i class="md md-landscape"></i><span>{{ gpxMinHeight }}&nbsp;m / {{  gpxMaxHeight  }}&nbsp;m</span>
-                <br>
-                <i class="md md-swap-vert"></i><span>{{ gpxUp }}&nbsp;m / {{ gpxDown }}&nbsp;m</span>
+            <div class="map-footer-item">
+                <div class="map-footer-item-content">
+                    <i class="md md-landscape"></i><span>{{ gpxMinHeight }}&nbsp;m / {{  gpxMaxHeight  }}&nbsp;m</span>
+                    <br>
+                    <i class="md md-swap-vert"></i><span>{{ gpxUp }}&nbsp;m / {{ gpxDown }}&nbsp;m</span>
+                </div>
             </div>
+
+
         </div>
 
 

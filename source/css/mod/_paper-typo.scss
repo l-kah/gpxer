@@ -74,3 +74,48 @@ $paper-font-size-body: 16px;
 $paper-font-size-tabs: 14px;
 $paper-font-size-caption: 12px;
 $paper-font-size-small: 10px;
+
+@mixin paper-typo-display1() {
+    font-size: $paper-font-size-display1;
+    font-weight: $paper-weight-regular;
+}
+@mixin paper-typo-headline() {
+    font-size: $paper-font-size-headline;
+    font-weight: $paper-weight-regular;
+}
+@mixin paper-typo-title() {
+    font-size: $paper-font-size-title;
+    font-weight: $paper-weight-medium;
+}
+@mixin paper-typo-subhead() {
+    font-size: $paper-font-size-subhead;
+    font-weight: $paper-weight-regular;
+}
+@mixin paper-typo-body() {
+    font-size: $paper-font-size-body;
+    font-weight: $paper-weight-regular;
+    color: $paper-theme-text;
+}
+@mixin paper-typo-body2() {
+    font-size: $paper-font-size-body;
+    font-weight: $paper-weight-medium;
+    color: $paper-theme-text;
+}
+@mixin paper-typo-caption() {
+    font-size: $paper-font-size-caption;
+    font-weight: $paper-weight-regular;
+    color: $paper-theme-text-2;
+}
+@mixin paper-typo-button() {
+    font-size: $paper-font-size-body;
+    font-weight: $paper-weight-regular;
+    text-transform: uppercase;
+}
+
+@mixin paper-typo-tab() {
+    font-size: $paper-font-size-tabs;
+    font-weight: $paper-weight-medium;
+    text-transform: uppercase;
+ 
+}
+
