@@ -1,3 +1,11 @@
+ // www.lars-kroll.de
+ var CLIENT_ID = '1010374654899-bmrfbtnjae4b8ckhooqecc2tct81h9r7.apps.googleusercontent.com';
+ // localhost:8100
+ var CLIENT_ID = '1010374654899-4hv4o8kgdf6gda704o4lffdqge42c3ph.apps.googleusercontent.com'; 
+ 
+    var SCOPES = 'https://www.googleapis.com/auth/drive';
+
+
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -41,27 +49,34 @@ app.config(function($compileProvider) {
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-    $urlRouterProvider.otherwise('tracks/internal');
+    $urlRouterProvider.otherwise('tracks/gdrive');
 
 
     $stateProvider.state('tracks', {
         url: '/tracks/:filesource',
         templateUrl: 'partials/tracks.html',
         controller: 'TracklistController',
-        reloadOnSearch: false,
         resolve: {
-            fileSource: function($stateParams) {
+            filesource: function($stateParams) {
                 return $stateParams.filesource
             }
         }
 
     })
 
+        $stateProvider.state('tracks.gdrive', {
+        url: 'tracks/gdrive',
+        templateUrl: 'partials/tracks.html',
+        controller: 'TracklistController',
+
+    })
+
+
+
     $stateProvider.state('track', {
         url: '/track/:track',
         templateUrl: 'partials/track.html',
         controller: 'TrackController',
-        reloadOnSearch: false,
         resolve: {
             track: function($stateParams) {
                 return $stateParams.track

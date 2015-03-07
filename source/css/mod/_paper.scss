@@ -48,8 +48,9 @@ html, body, input, textarea, li {
     width: 56px;
     height: 56px;
     margin: 10px;
-    box-shadow: $paper-depth3;
+    box-shadow: $paper-depth2;
     background-color: $paper-theme-icons;
+    transition: 0.25s;
 }
 .paper-fab .paper-fab-content {
     position: absolute;
@@ -65,8 +66,22 @@ html, body, input, textarea, li {
     background-color: rgba(0, 0, 0, .025);
     opacity: 0;
 }
+
+.paper-fab-s {
+    @extend .paper-fab;
+      width: 36px;
+    height: 36px;
+    
+    background-color: $paper-theme-accent;
+
+    position:absolute;
+    right: 14px;
+    bottom:-60px;
+}
+
+
 .paper-fab:hover {
-    box-shadow: $paper-depth4;
+    box-shadow: $paper-depth3;
 }
 .paper-fab .paper-fab-content:hover {
     opacity: 1;

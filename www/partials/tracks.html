@@ -1,46 +1,60 @@
-<div class="paper-header">
+<header class="paper-header">
     <div class="paper-toolbar">
-        <button class="md md-menu paper-icon"  ng-click="showPaperDrawer();"></button>
-        <h1 class="paper-toolbar-title">Strecken ({{ fileSource }})</h1>
-        
+        <button class="md md-menu paper-icon" ng-hide="$parent.folderHistory.length > 1" ng-click="showPaperDrawer();"></button>
+        <button class="md md-arrow-back paper-icon" ng-show="$parent.folderHistory.length > 1" ng-click="gdLoadParent();"></button>
+
+        <h1 class="paper-toolbar-title-sub">{{ tracksTitle}} 
+ <span class="paper-toolbar-subtitle">{{ $parent.folderHistory[($parent.folderHistory.length - 1)].filename }}</span>
+        </h1>
         <button class="md-col-white md md-more-vert paper-icon pull-right" ng-click="togglePaperPopup($event)"></button>
+        <button class="md-col-white  paper-icon pull-right" ng-class="{ 'md-star' : gdFavorite, 'md-star-outline' : !gdFavorite }" ng-click="toggleFavorite()"></button>
         <button class="md-col-white md md-search paper-icon pull-right" ng-hide="tracksSearch" ng-click="tracksSearch=!tracksSearch;"></button>
 
         <div class="paper-search" ng-show="tracksSearch">
-            <button class="md-col-white md md-close paper-icon pull-right"   ng-class="{'paper-transparent':!filesQuery }" ng-click="filesQuery='';"></button>
+            <button class="md-col-white md md-close paper-icon pull-right" ng-class="{'paper-transparent':!filesQuery }" ng-click="filesQuery='';"></button>
             <input type="text" placeholder="Nach Strecken suchen" ng-model="filesQuery" ng-show="tracksSearch" id="inputSearch" class="paper-search-input pull-right">
-            <button class="md-col-white md md-arrow-back paper-icon pull-left" ng-click="tracksSearch=!tracksSearch;filesQuery='';"></button>
+            <button class="md-col-white md md-arrow-folderIni paper-icon pull-left" ng-click="tracksSearch=!tracksSearch;filesQuery='';"></button>
         </div>
+
     </div>
-</div>
+</header>
 
 <div class="paper-content">
 
-    <ul class="paper-list">
 
-        <li class="paper-list-item" ng-repeat="track in tracks | orderBy:filesOrder:reverse | filter : filesQuery | limitTo:500" ng-click="loadTrack(track.filename);">
-                 <i class="md md-place paper-icon paper-list-icon  pull-left"></i>
-                <div class="paper-list-content">
-                    <p class="paper-list-body">{{ track.filename }}</p>
-                    <p class="paper-list-caption">{{ track.filedate }} {{ track.filesize }}</p>
-                </div>
-               <li>
+    <ul class="paper-list">
+        <li class="paper-list-item" ng-show="tracks.length == 0">
+                        <div class="paper-list-content">
+                <p class="paper-list-body">Keine Einträge gefunden</p>
+                <p class="paper-list-caption"></p>
+            </div>
+        </li>
+        <li class="paper-list-item" ng-repeat="track in tracks | orderBy:filesOrder:reverse | filter : filesQuery | limitTo:500" ng-click="gdLoadTracks(track);">
+            <i class="md {{ track.fileicon }} paper-icon paper-list-icon  pull-left"></i>
+            <div class="paper-list-content">
+                <p class="paper-list-body">{{ track.filename }}</p>
+                <p class="paper-list-caption">{{ track.filedate }} {{ track.filesize }}</p>
+            </div>
+            <li>
     </ul>
 
+    <button ng-click="gdLoadTracks(gpxerFavorite[gpxerFavorite.length - 1])" class="md-star paper-fab md  tracks-fab"><span class="paper-fab-content"></span>
+    </button>
 </div>
 
 
 
 
 
-    <div class="paper-popup" ng-class="{'paper-popup-ani':paperOver}">
-        <ul class="paper-popup-items">
-            <li class="paper-popup-title">Sortieren nach</li>
-            <li class="paper-popup-item" ng-click="sortTracks('filename');">Dateiname</li>
-            <li class="paper-popup-item" ng-click="sortTracks('timestamp');">Datum</li>
-            <li class="paper-popup-item" ng-click="sortTracks('filesize');">Dateigröße</li>
-        </ul>
-    </div>
+
+<div class="paper-popup" ng-class="{'paper-popup-ani':paperOver}">
+    <ul class="paper-popup-items">
+        <li class="paper-popup-title">Sortieren nach</li>
+        <li class="paper-popup-item" ng-click="sortTracks('filename');">Dateiname</li>
+        <li class="paper-popup-item" ng-click="sortTracks('timestamp');">Datum</li>
+        <li class="paper-popup-item" ng-click="sortTracks('filesize');">Dateigröße</li>
+    </ul>
+</div>
 
 
 <div class="paper-lightbox" ng-class="{'paper-lightbox-on':paperOver}" ng-click="paperOver=false;"></div>

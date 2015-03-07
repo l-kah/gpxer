@@ -6,9 +6,11 @@ app.controller('rootController', function($scope, $state, $location) {
     // ** load track in trackview
     $scope.loadTrackList = function(id) {
         $scope.closeDrawer();
+        $scope.gdCurrentDir = "";
         $state.go('tracks', {
             'filesource': id
         });
+
     }
 
     $scope.loadAbout = function() {
@@ -38,7 +40,7 @@ app.controller('rootController', function($scope, $state, $location) {
         $scope.paperDrawer = true;
     }
 
-$scope.parentscope = true;
+    $scope.parentscope = true;
 
 });
 

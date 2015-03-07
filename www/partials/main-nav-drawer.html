@@ -1,8 +1,8 @@
 
     <div class="paper-drawer" ng-swipe-left="closeDrawer();"  ng-swipe-right="openDrawer();" ng-class="{ 'paper-drawer-ani' : paperDrawer }">
 
-            <div class="paper-drawer-title"><button class="md md-close  md-col-white paper-icon pull-right" ng-click="closeDrawer();"></button>
-            <p class="paper-drawer-item-text">GPXer</p>
+            <div class="paper-drawer-header"><!-- <button class="md md-close  md-col-white paper-icon pull-right" ng-click="closeDrawer();"></button> -->
+            <p class="paper-drawer-title">GPXer</p>
             </div>
 
         <ul class="paper-drawer-items">
@@ -12,9 +12,9 @@
                 <p class="paper-drawer-item-text">Interner Speicher</p>
             </li>
 
-            <li class="paper-drawer-item" ng-click="loadTrackList('external');">
+            <li class="paper-drawer-item" ng-click="loadTrackList('gdrive');">
                 <i class="md md-sd-storage   paper-icon paper-drawer-item-icon"></i>
-                <p class="paper-drawer-item-text">Externer Speicher</p>
+                <p class="paper-drawer-item-text">Google Drive</p>
             </li>
 
             <li class="paper-drawer-item-divider" ng-click="loadSettings();">

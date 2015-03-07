@@ -9,7 +9,7 @@
     bottom: 100%;
     width: 100vw;
     height: 100%;
-    // background-color: rgba(0, 0, 0, .2);
+    background-color: rgba(0, 0, 0, .5);
     opacity: 0;
     transition: 0.2s;
 }
@@ -93,10 +93,12 @@
 .paper-drawer {
     z-index: 9999;
     position: fixed;
-    top: 0px;
+    top: 0;
     left: -290px;
-    width: 300px;
+    width: 250px;
     height: 100vh;
+    overflow: hidden;
+    overflow-y: auto;
     background-color: $paper-theme-icons;
     box-shadow: $paper-depth3;
     // transform: translate(-295px, 0);
@@ -107,7 +109,8 @@
     transform: translate(290px, 0);
     opacity: 1;
 }
-.paper-drawer-title {
+.paper-drawer-header {
+    position: relative;
     overflow: auto;
     height: 168px;
     margin: 0 0 12px 0;
@@ -123,9 +126,13 @@
     padding: 0;
     clear: both;
 }
-.paper-drawer-title .paper-drawer-item-text {
+.paper-drawer-title {
+position: absolute;
+bottom: 16px;
+left: 16px;
     @include paper-typo-title;
     color: $paper-theme-icons;
+    font-size: $paper-font-size-display1;
 }
 .paper-drawer-title:hover {
     background-color: none;

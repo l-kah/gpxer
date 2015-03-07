@@ -71,12 +71,11 @@
     transform: translate(-120px, 0);
 }
 .map-card-col {
-
     display: inline-block;
     width: auto;
     @media screen and (max-width: 440px) {
-            display: block;
-            width: 100%;
+        display: block;
+        width: 100%;
     }
 }
 .push-right {
@@ -85,19 +84,22 @@
 .push-left {
     float: left;
 }
-
-.Vertical-center {
+.vertical-center {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    -moz-transform: translateY(-50%); /* For mozilla support */
-    -webkit-transform: translateY(-50%); /* For safari support */
-    -ms-transform: translateY(-50%); /* For IE support */
-    -o-transform: translateY(-50%); /* For opera support */
+    -moz-transform: translateY(-50%);
+    /* For mozilla support */
+    
+    -webkit-transform: translateY(-50%);
+    /* For safari support */
+    
+    -ms-transform: translateY(-50%);
+    /* For IE support */
+    
+    -o-transform: translateY(-50%);
+    /* For opera support */
 }
-
-
-
 .laps-table {
     font-weight: $paper-weight-medium;
     padding: 8px 0 0 0;
@@ -126,4 +128,11 @@
 .laps-step {
     border-top: 1px solid $paper-theme-divider;
     padding-top: 1px;
+}
+.tracks-fab {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    background-color: $paper-theme-accent;
+    color: $md-white;
 }

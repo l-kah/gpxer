@@ -2,6 +2,8 @@
 
 app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $ionicHistory, $state, $location, DataSource, $timeout, $interval, track) {
 
+$scope.tracksSubTitle =  $scope.$parent.gdCurFile.filename;
+ console.log($scope.$parent.gdCurFile);
 
     // *** show drawer
     $scope.showPaperDrawer = function() {
@@ -10,7 +12,11 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
 
     // ** load tracklist
     $scope.loadTracks = function() {
-        $state.go('tracks');
+        if (track == "gdrive") {
+            $state.go('tracks', {filesource: 'gdrive' });
+        } else {
+            $state.go('tracks', {filesource: 'internal' });
+        }
     };
 
 
@@ -141,6 +147,8 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
 
         var x2js = new X2JS();
         var json = x2js.xml_str2json(data);
+
+
         var gpxPoints = json.gpx.trk.trkseg.trkpt;
         var gpxPointsLen = gpxPoints.length;
 
@@ -449,8 +457,8 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
         $scope.gpxDistance = Math.round(dTotal * 100) / 100;
         $scope.gpxPace = gpxpace;
         $scope.gpxSpeed = gpxspeed;
-        $scope.gpxUp = hUp;
-        $scope.gpxDown = hDown;
+        $scope.gpxUp = Math.round(hUp);
+        $scope.gpxDown = Math.round(hDown);
         $scope.gpxPointsLen = gpxPointsLen;
 
         $scope.gpxDuration = gpxdur;
@@ -747,17 +755,21 @@ app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $i
     else
         $scope.curTrackfile = track;
 
-    if (!$scope.map) {
+    if (track == "gdrive") {
+        xmlTransform($scope.$parent.gdDownloadData);
 
-        // *** load XML and call transform gpx
-        // var SOURCE_FILE = "gpx-data/runtastic_20140309_1641_Wandern.gpx";
+    } else {
+        if (!$scope.map) {
 
-        var SOURCE_FILE = "gpx-data/" + $scope.curTrackfile;
-        DataSource.get(SOURCE_FILE, xmlTransform);
+            // *** load XML and call transform gpx
+            // var SOURCE_FILE = "gpx-data/runtastic_20140309_1641_Wandern.gpx";
 
-        // *** END load XML and call transform gpx
+            var SOURCE_FILE = "gpx-data/" + $scope.curTrackfile;
+            DataSource.get(SOURCE_FILE, xmlTransform);
+
+            // *** END load XML and call transform gpx
+        }
     }
-
 
 });
 
