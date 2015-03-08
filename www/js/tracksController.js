@@ -6,18 +6,14 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
 
 
     var gdTracks = [];
-    var gdIniFolder = "root";
-
-    $scope.gdParent = gdIniFolder;
-    $scope.gdParentTemp = gdIniFolder;
 
     function folderIni() {
-    if (!$scope.$parent.folderHistory) {
-        $scope.$parent.folderHistory = [{
-            id: 'root',
-            filename: 'Google Drive'
-        }];
-    }
+        if (!$scope.$parent.folderHistory) {
+            $scope.$parent.folderHistory = [{
+                id: 'root',
+                filename: 'Google Drive'
+            }];
+        }
 
 
     }
@@ -51,14 +47,25 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
 
     function checkFavorite() {
         if ($scope.gpxerFavorite) {
-
             if ($scope.gpxerFavorite[$scope.gpxerFavorite.length - 1].filename == $scope.$parent.folderHistory[($scope.$parent.folderHistory.length - 1)].filename) {
                 $scope.gdFavorite = true;
             } else {
                 $scope.gdFavorite = false;
             }
         }
+
     }
+
+   $scope.loadFavorite =  function() {
+        if ($scope.gpxerFavorite) {
+            $scope.$parent.folderHistory = angular.copy($scope.gpxerFavorite);
+            
+            console.log("load:",$scope.$parent.folderHistory[($scope.$parent.folderHistory.length - 1)]);
+            $scope.gdLoadTracks($scope.$parent.folderHistory.pop());
+        }
+
+    }
+
 
     // *** END INI folder favorite
 
@@ -69,6 +76,16 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
     }
     $scope.hidePaperDrawer = function() {
         $scope.$parent.closeDrawer();
+    }
+
+    //  *** focus für search
+    $scope.setFocus = function() {
+        $scope.tracksSearch = !$scope.tracksSearch;
+        $timeout(setFocusWait, 750);
+    }
+
+    function setFocusWait() {
+        document.getElementById("inputSearch").focus();
     }
 
     // *** ENDE search
@@ -106,7 +123,8 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
         $scope.tracks = validJSON;
         $scope.$parent.tracklist = validJSON;
 
-        perfTimer = new Date().getTime() - perfTimer;
+        perfTimer = new Date()
+            .getTime() - perfTimer;
     }
 
     if (!filesource)
@@ -114,7 +132,8 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
 
     $scope.fileSource = filesource;
 
-    var perfTimer = new Date().getTime();
+    var perfTimer = new Date()
+        .getTime();
     if (filesource == "internal") {
         SOURCE_FILE = "gpx-data/gpxData.json";
         if (!$scope.$parent.tracklist) {
@@ -176,16 +195,17 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
 
         if (trackobj.filesource) {
             if (trackobj.fileextension == "gpx") {
-                $scope.$parent.gdCurFile = trackobj;
+                $scope.$parent.folderHistory.push(trackobj);
                 gdDownloadFile(trackobj.fileurl, gdLoadTrack);
             } else {
                 $scope.$parent.folderHistory.push(trackobj);
                 checkFavorite();
                 id = trackobj.id;
 
-                gapi.client.load('drive', 'v2').then(function() {
-                    makeDriveRequest(id);
-                });
+                gapi.client.load('drive', 'v2')
+                    .then(function() {
+                        makeDriveRequest(id);
+                    });
             }
         } else {
             $scope.tracksSearch = false;
@@ -199,7 +219,6 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
 
     function gdLoadTrack(data) {
         $scope.$parent.gdDownloadData = data;
-        $scope.$parent.gdCurrentDir = $scope.gdParent;
 
         $state.go('track', {
             'track': 'gdrive'
@@ -216,7 +235,8 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
      */
     function gdDownloadFile(downloadUrl, callback) {
         if (downloadUrl) {
-            var accessToken = gapi.auth.getToken().access_token;
+            var accessToken = gapi.auth.getToken()
+                .access_token;
             var xhr = new XMLHttpRequest();
             xhr.open('GET', downloadUrl);
             xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
@@ -241,21 +261,19 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
 
         checkFavorite();
 
-        gapi.client.load('drive', 'v2').then(function() {
-            makeDriveRequest(id);
-        });
+        gapi.client.load('drive', 'v2')
+            .then(function() {
+                makeDriveRequest(id);
+            });
 
     }
 
     function makeDriveRequest(gdId) {
 
         if (!gdId)
-            gdId = gdIniFolder;
+            gdId = $scope.$parent.folderHistory[($scope.$parent.folderHistory.length - 1)].id;
 
         $scope.curFolder = gdId;
-
-        $scope.gdParent = $scope.gdParentTemp;
-        $scope.gdParentTemp = gdId;
 
         var request = gapi.client.drive.files.list({
             'corpus': "DOMAIN",

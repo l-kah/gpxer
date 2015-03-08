@@ -63,6 +63,10 @@ $paper-theme-text-2 : $md-grey-600;
 $paper-theme-divider : $md-grey-300;
 $paper-theme-hover : $md-grey-200;
 
+.paper-col-accent { color: $paper-theme-accent; }
+.paper-col-light { color: $md-white; }
+.paper-col-dark{ color: $md-black; }
+
 .paper-typo-caption
 {
   @include paper-typo-caption();

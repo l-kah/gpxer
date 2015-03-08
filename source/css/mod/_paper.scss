@@ -1,10 +1,14 @@
-html, body, input, textarea, li {
+html,
+body,
+input,
+textarea,
+li {
     font-family: 'Roboto', sans-serif;
     color: $paper-theme-text;
 }
-
-.paper-transparent { opacity: 0; }
-
+.paper-transparent {
+    opacity: 0;
+}
 .paper-base {
     background-color: $md-grey-200;
 }
@@ -27,16 +31,22 @@ html, body, input, textarea, li {
     width: 48px;
     height: 48px;
     font-size: 24px;
-    padding: 12px;
+    padding: 0px;
     margin: 0;
     border: none;
-    color: $paper-theme-icons;
     border-radius: 50%;
-&:hover { background-color: rgba(0, 0, 0, .05) !important;}
-&:active { background-color: rgba(0, 0, 0, .2) !important;}
-
+    &:hover {
+        background-color: rgba(0, 0, 0, .05) !important;
+    }
+    &:active {
+        background-color: rgba(0, 0, 0, .2) !important;
+    }
 }
-
+.paper-icon-popmenu {
+    @extend .paper-icon;
+    margin: 0 -8px 0 -8px;
+    padding: 0 0 0 0;
+}
 .paper-fab {
     display: inline-block;
     position: relative;
@@ -66,20 +76,15 @@ html, body, input, textarea, li {
     background-color: rgba(0, 0, 0, .025);
     opacity: 0;
 }
-
 .paper-fab-s {
     @extend .paper-fab;
-      width: 36px;
+    width: 36px;
     height: 36px;
-    
     background-color: $paper-theme-accent;
-
-    position:absolute;
+    position: absolute;
     right: 14px;
-    bottom:-60px;
+    bottom: -60px;
 }
-
-
 .paper-fab:hover {
     box-shadow: $paper-depth3;
 }
@@ -121,7 +126,6 @@ html, body, input, textarea, li {
     float: left;
     display: block;
     margin: 0 0 0 0;
-
     width: calc(100% - 72px);
 }
 p.paper-card-list-sub {
@@ -132,7 +136,6 @@ p.paper-card-list-text {
     @include paper-typo-body();
 }
 .paper-list {
-
     clear: both;
     margin: 0;
     padding: 0;
@@ -149,11 +152,10 @@ p.paper-card-list-text {
     border-bottom: 1px solid $paper-theme-divider;
     margin: 0;
     padding: 14px 0 10px 8px;
-        &:active {
+    &:active {
         background-color: $md-grey-200;
     }
 }
-
 .paper-list-content {
     cursor: pointer;
     display: inline-block;
@@ -182,9 +184,9 @@ p.paper-card-list-text {
     background-color: $paper-theme;
 }
 .paper-search-input {
-    width: calc(100vw - 140px);
+    width: calc(100vw - 108px);
     height: 27px !important;
-    margin: 12px 8px 0 8px;
+    margin: 12px 0 0 0;
     padding: 0 4px 0 8px !important;
     background-color: $paper-theme;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
@@ -208,23 +210,16 @@ input::-webkit-input-placeholder {
 }
 .paper-content {
     margin-top: 56px;
-      overflow: hidden;
+    overflow: hidden;
     overflow-y: overlay;
-    
     height: calc(100vh - 56px);
-
 }
-
 .paper-content2 {
     margin-top: 56px;
     overflow: hidden;
     overflow-y: overlay;
     height: calc(100vh - 56px);
-
-
-    
 }
-
 .paper-fold-2 {
     margin-top: 112px;
     height: calc(100vh - 112px);
@@ -236,37 +231,32 @@ input::-webkit-input-placeholder {
 .paper-noscroll {
     overflow: hidden;
 }
-
-
-
-
-
-
-
-.paper-content::-webkit-scrollbar, .paper-content2::-webkit-scrollbar  {
+.paper-content::-webkit-scrollbar,
+.paper-content2::-webkit-scrollbar {
     display: none;
     width: 14px;
     height: 18px;
     background-color: transparent;
 }
-.paper-content::-webkit-scrollbar-thumb, .paper-content2::-webkit-scrollbar-thumb {
+.paper-content::-webkit-scrollbar-thumb,
+.paper-content2::-webkit-scrollbar-thumb {
     height: 6px;
-    border: 4px solid rgba(0, 0, 0, 0);
+    border: 5px solid rgba(0, 0, 0, 0);
     background-clip: padding-box;
-    -webkit-border-radius: 7px;
-    background-color: rgba(0, 0, 0, 0.15);
-    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+    -webkit-border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.125);
+    
 }
-.paper-content::-webkit-scrollbar-button, .paper-content2::-webkit-scrollbar-button {
+.paper-content::-webkit-scrollbar-button,
+.paper-content2::-webkit-scrollbar-button {
     width: 0;
     height: 0;
     display: none;
 }
-.paper-content::-webkit-scrollbar-corner, .paper-content2::-webkit-scrollbar-corner {
+.paper-content::-webkit-scrollbar-corner,
+.paper-content2::-webkit-scrollbar-corner {
     background-color: transparent;
 }
-
 .paper-content::-webkit-scrollbar {
     display: block;
 }
-

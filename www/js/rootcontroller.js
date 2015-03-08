@@ -6,9 +6,16 @@ app.controller('rootController', function($scope, $state, $location) {
     // ** load track in trackview
     $scope.loadTrackList = function(id) {
         $scope.closeDrawer();
-        $scope.gdCurrentDir = "";
+        $scope.folderHistory = [{
+            id: 'root',
+            filename: 'Google Drive'
+        }];
         $state.go('tracks', {
             'filesource': id
+        }, {
+            reload: true,
+            inherit: false,
+            notify: true
         });
 
     }

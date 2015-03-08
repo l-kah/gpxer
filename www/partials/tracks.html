@@ -1,30 +1,37 @@
-<header class="paper-header">
+<header class="paper-header-lg paper-col-light">
     <div class="paper-toolbar">
-        <button class="md md-menu paper-icon" ng-hide="$parent.folderHistory.length > 1" ng-click="showPaperDrawer();"></button>
-        <button class="md md-arrow-back paper-icon" ng-show="$parent.folderHistory.length > 1" ng-click="gdLoadParent();"></button>
 
-        <h1 class="paper-toolbar-title-sub">{{ tracksTitle}} 
- <span class="paper-toolbar-subtitle">{{ $parent.folderHistory[($parent.folderHistory.length - 1)].filename }}</span>
+        <button class="paper-col-light md md-menu paper-icon" ng-hide="$parent.folderHistory.length > 1" ng-click="showPaperDrawer();"></button>
+        <button class="paper-col-light md md-arrow-back paper-icon" ng-show="$parent.folderHistory.length > 1" ng-click="gdLoadParent();"></button>
+
+        <h1 class="paper-toolbar-title">{{ tracksTitle}}
+ 
         </h1>
-        <button class="md-col-white md md-more-vert paper-icon pull-right" ng-click="togglePaperPopup($event)"></button>
-        <button class="md-col-white  paper-icon pull-right" ng-class="{ 'md-star' : gdFavorite, 'md-star-outline' : !gdFavorite }" ng-click="toggleFavorite()"></button>
-        <button class="md-col-white md md-search paper-icon pull-right" ng-hide="tracksSearch" ng-click="tracksSearch=!tracksSearch;"></button>
+
+        <button class="paper-col-light md md-more-vert paper-icon-popmenu pull-right " ng-click="togglePaperPopup($event)"></button>
+        <button class="paper-icon pull-right" ng-class="{ 'md-star paper-col-accent' : gdFavorite,  'md-star-outline paper-col-light' : !gdFavorite }" ng-click="toggleFavorite()"></button>
+        <button class="paper-col-light md md-search paper-icon pull-right" ng-hide="tracksSearch" ng-click="setFocus();"></button>
 
         <div class="paper-search" ng-show="tracksSearch">
-            <button class="md-col-white md md-close paper-icon pull-right" ng-class="{'paper-transparent':!filesQuery }" ng-click="filesQuery='';"></button>
+            <button class="paper-col-light md md-close paper-icon pull-right" ng-class="{'paper-transparent':!filesQuery }" ng-click="filesQuery='';"></button>
             <input type="text" placeholder="Nach Strecken suchen" ng-model="filesQuery" ng-show="tracksSearch" id="inputSearch" class="paper-search-input pull-right">
-            <button class="md-col-white md md-arrow-folderIni paper-icon pull-left" ng-click="tracksSearch=!tracksSearch;filesQuery='';"></button>
+            <button class="paper-col-light md md-arrow-back paper-icon pull-left" ng-click="tracksSearch=!tracksSearch;filesQuery='';"></button>
         </div>
 
+        <h2 class="paper-toolbar-subtitle">
+        <span ng-repeat="historyItem in $parent.folderHistory" ng-if="!$first || $parent.folderHistory.length == 1 ">
+        {{ historyItem.filename }}<span ng-if="!$last">&nbsp;&gt;&nbsp;</span></span>
+
+        </h2>
     </div>
 </header>
 
-<div class="paper-content">
+<div class="paper-content paper-fold-2">
 
 
     <ul class="paper-list">
         <li class="paper-list-item" ng-show="tracks.length == 0">
-                        <div class="paper-list-content">
+            <div class="paper-list-content">
                 <p class="paper-list-body">Keine Einträge gefunden</p>
                 <p class="paper-list-caption"></p>
             </div>
@@ -38,7 +45,7 @@
             <li>
     </ul>
 
-    <button ng-click="gdLoadTracks(gpxerFavorite[gpxerFavorite.length - 1])" class="md-star paper-fab md  tracks-fab"><span class="paper-fab-content"></span>
+    <button ng-click="loadFavorite();" class="paper-fab md  tracks-fab" ng-class="{ 'md-star' : gpxerFavorite, 'md-star-outline' : !gpxerFavorite }"><span class="paper-fab-content"></span>
     </button>
 </div>
 

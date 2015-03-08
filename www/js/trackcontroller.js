@@ -2,7 +2,7 @@
 
 app.controller('TrackController', function($scope, $rootScope, $ionicLoading, $ionicHistory, $state, $location, DataSource, $timeout, $interval, track) {
 
-$scope.tracksSubTitle =  $scope.$parent.gdCurFile.filename;
+$scope.tracksSubTitle =  $scope.$parent.folderHistory[($scope.$parent.folderHistory.length - 1)].filename;
  console.log($scope.$parent.gdCurFile);
 
     // *** show drawer
@@ -13,6 +13,7 @@ $scope.tracksSubTitle =  $scope.$parent.gdCurFile.filename;
     // ** load tracklist
     $scope.loadTracks = function() {
         if (track == "gdrive") {
+            $scope.$parent.folderHistory.pop();
             $state.go('tracks', {filesource: 'gdrive' });
         } else {
             $state.go('tracks', {filesource: 'internal' });
