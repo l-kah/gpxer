@@ -18,9 +18,9 @@
             <button class="paper-col-light md md-arrow-back paper-icon pull-left" ng-click="tracksSearch=!tracksSearch;filesQuery='';"></button>
         </div>
 
-        <h2 class="paper-toolbar-subtitle">
-        <span ng-repeat="historyItem in $parent.folderHistory" ng-if="!$first || $parent.folderHistory.length == 1 ">
-        {{ historyItem.filename }}<span ng-if="!$last">&nbsp;&gt;&nbsp;</span></span>
+        <h2 class="paper-toolbar-breadcrumbs">
+        <span ng-click="gdLoadTracks(historyItem);" ng-repeat="historyItem in $parent.folderHistory" ng-if="!$first || $parent.folderHistory.length == 1 ">
+        {{ historyItem.filename }}<i ng-if="!$last" class="md md-chevron-right"></i></span>
 
         </h2>
     </div>
@@ -40,7 +40,7 @@
             <i class="md {{ track.fileicon }} paper-icon paper-list-icon  pull-left"></i>
             <div class="paper-list-content">
                 <p class="paper-list-body">{{ track.filename }}</p>
-                <p class="paper-list-caption">{{ track.filedate }} {{ track.filesize }}</p>
+                <p class="paper-list-caption">{{ track.filedate | date : 'dd.MM.yyyy HH:mm:ss' : timezone }} {{ track.filesize }}</p>
             </div>
             <li>
     </ul>

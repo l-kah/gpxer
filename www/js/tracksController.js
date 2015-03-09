@@ -291,6 +291,7 @@ app.controller('TracklistController', function($scope, $rootScope, $state, $loca
                 var gdModDate = new Date(resp.items[i].modifiedDate);
                 gdModDate = gdModDate.getDate() + "." + gdModDate.getMonth() + "." + gdModDate.getFullYear() + ", " + gdModDate.getHours() + ":" + gdModDate.getMinutes() + " Uhr";
 
+gdModDate = resp.items[i].modifiedDate;
                 var gdFileSize = resp.items[i].fileSize;
                 if (gdFileSize)
                     gdFileSize = ", " + Math.round(gdFileSize / 1024) + "Kb";
